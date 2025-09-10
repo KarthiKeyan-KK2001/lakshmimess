@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Party Hall Section</title>
+  <style>
+    :root {
+      --orange: #F36C21;
+      --yellow-orange: #F7941D;
+      --cream: #FFF7F0;
+      --brown-dark: #5C3A21;
+      --brown-med: #7C4D28;
+      --brown-light: #BFA58B;
+      --red: #E30613;
+      --red-dark: #C1272D;
+      --golden: #F6C453;
+      --grey-dark: #4D4D4D;
+      --grey-light: #999999;
+      --black: #000000;
+      --white: #FFFFFF;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: var(--cream);
+      color: var(--brown-dark);
+    }
+
+    /* Party Hall Section */
+    .party-hall-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, var(--cream) 0%, #FFF2E6 100%);
+      min-height: 100vh;
+    }
+
+    .section-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section */
+    .hero-content {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .hero-title {
+      font-size: 3.5em;
+      font-weight: bold;
+      color: var(--brown-dark);
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--yellow-orange));
+      border-radius: 2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3em;
+      color: var(--brown-med);
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    /* Cards Grid */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    /* Event Cards */
+    .event-card {
+      height: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    /* Background Images */
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      transition: transform 0.4s ease;
+    }
+
+    .event-card:hover::before {
+      transform: scale(1.1);
+    }
+
+    /* Background images for different events */
+    .birthday::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .engagement::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .corporate::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .baby-shower::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .family::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .mangal::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .valaikappu::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1606800052052-a08af7148866?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    /* Card Content */
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
+      z-index: 2;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--white);
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .book-now-btn {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      color: var(--white);
+      border: none;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 20px rgba(243, 108, 33, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-now-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .book-now-btn:hover::before {
+      left: 100%;
+    }
+
+    .book-now-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(243, 108, 33, 0.6);
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: var(--brown-dark);
+      color: var(--white);
+      padding: 60px 30px;
+      margin-top: 80px;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--brown-dark), var(--brown-med));
+      opacity: 0.9;
+    }
+
+    .contact-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-title {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: var(--orange);
+    }
+
+    .contact-subtitle {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+      color: var(--cream);
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--cream);
+      font-size: 1.1em;
+    }
+
+    .contact-icon {
+      background: var(--orange);
+      padding: 12px;
+      border-radius: 50%;
+      font-size: 1.2em;
+    }
+
+    .main-cta {
+      background: linear-gradient(135deg, var(--golden), var(--yellow-orange));
+      color: var(--brown-dark);
+      border: none;
+      padding: 20px 40px;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .main-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(246, 196, 83, 0.4);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5em;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .event-card {
+        height: 350px;
+        margin: 0 10px;
+      }
+
+      .card-title {
+        font-size: 1.5em;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .contact-title {
+        font-size: 2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .party-hall-section {
+        padding: 40px 15px;
+      }
+
+      .hero-title {
+        font-size: 2em;
+      }
+
+      .event-card {
+        height: 300px;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .card-title {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+      }
+
+      .book-now-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+      }
+
+      .contact-section {
+        padding: 40px 20px;
+        margin-top: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="party-hall-section">
+    <div class="section-container">
+      <!-- Hero Section -->
+      <div class="hero-content">
+        <h1 class="hero-title">Celebrate in Style</h1>
+        <p class="hero-subtitle">Make Your Special Moments Unforgettable at Lakshmi Mess Party Hall</p>
+      </div>
+
+      <!-- Events Grid -->
+      <div class="events-grid">
+        <!-- Birthday Card -->
+        <div class="event-card birthday">
+          <div class="card-content">
+            <h3 class="card-title">Birthday Celebrations</h3>
+            <div class="special-features">
+              <span class="feature-badge">
+                <i class="fas fa-snowflake feature-icon"></i>
+                AC Room
+              </span>
+              <span class="feature-badge">
+                <i class="fas fa-first-aid feature-icon"></i>
+                Medical Care
+              </span>
+            </div>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Engagement Card -->
+        <div class="event-card engagement">
+          <div class="card-content">
+            <h3 class="card-title">Engagement Ceremonies</h3>
+            <div class="special-features">
+              <span class="feature-badge">
+                <i class="fas fa-snowflake feature-icon"></i>
+                AC Room
+              </span>
+              <span class="feature-badge">
+                <i class="fas fa-first-aid feature-icon"></i>
+                Medical Care
+              </span>
+            </div>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Corporate Meetings Card -->
+        <div class="event-card corporate">
+          <div class="card-content">
+            <h3 class="card-title">Corporate Meetings</h3>
+            <div class="special-features">
+              <span class="feature-badge">
+                <i class="fas fa-snowflake feature-icon"></i>
+                Fully AC Hall
+              </span>
+              <span class="feature-badge">
+                <i class="fas fa-first-aid feature-icon"></i>
+                Medical Facilities
+              </span>
+            </div>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Baby Shower Card -->
+        <div class="event-card baby-shower">
+          <div class="card-content">
+            <h3 class="card-title">Baby Showers</h3>
+            <div class="special-features">
+              <span class="feature-badge">
+                <i class="fas fa-snowflake feature-icon"></i>
+                Fully AC Hall
+              </span>
+              <span class="feature-badge">
+                <i class="fas fa-first-aid feature-icon"></i>
+                Medical Facilities
+              </span>
+            </div>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Family Gatherings Card -->
+        <div class="event-card family">
+          <div class="card-content">
+            <h3 class="card-title">Family Gatherings</h3>
+            <div class="special-features">
+              <span class="feature-badge">
+                <i class="fas fa-snowflake feature-icon"></i>
+                Fully AC Hall
+              </span>
+              <span class="feature-badge">
+                <i class="fas fa-first-aid feature-icon"></i>
+                Medical Facilities
+              </span>
+            </div>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Mangal Niratu Vilai Card -->
+        <div class="event-card mangal">
+          <div class="card-content">
+            <h3 class="card-title">Mangal Niratu Vilai</h3>
+            <div class="special-features">
+              <span class="feature-badge">
+                <i class="fas fa-snowflake feature-icon"></i>
+                Fully AC Hall
+              </span>
+              <span class="feature-badge">
+                <i class="fas fa-first-aid feature-icon"></i>
+                Medical Facilities
+              </span>
+            </div>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Valaikappu Card -->
+        <div class="event-card valaikappu">
+          <div class="card-content">
+            <h3 class="card-title">Valaikappu Ceremony</h3>
+            <div class="special-features">
+              <span class="feature-badge">
+                <i class="fas fa-snowflake feature-icon"></i>
+                Fully AC Hall
+              </span>
+              <span class="feature-badge">
+                <i class="fas fa-first-aid feature-icon"></i>
+                Medical Facilities
+              </span>
+            </div>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contact-section">
+        <div class="contact-content">
+          <h2 class="contact-title">Ready to Book Your Event?</h2>
+          <p class="contact-subtitle">Let's make your celebration unforgettable</p>
+          
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-phone contact-icon"></i>
+              <span>72006 98989 | 72007 98989</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <span>lakshmimess@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock contact-icon"></i>
+              <span>6:00 AM - 10:00 PM</span>
+            </div>
+          </div>
+          
+          <button class="main-cta">Contact Us Today</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Add click functionality to buttons
+    document.querySelectorAll('.book-now-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        // Get the event type from the parent card
+        const card = this.closest('.event-card');
+        const eventType = card.querySelector('.card-title').textContent;
+        
+        // You can add your booking logic here
+        alert(`Booking request for: ${eventType}\nPlease call us at 72006 98989 to confirm your booking.`);
+      });
+    });
+
+    document.querySelector('.main-cta').addEventListener('click', function() {
+      // Scroll to contact info or open contact form
+      alert('Contact us at:\nPhone: 72006 98989 | 72007 98989\nEmail: lakshmimess@gmail.com');
+    });
+  </script>
+</body>
+</html>

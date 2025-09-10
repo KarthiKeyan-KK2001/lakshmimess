@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Gold White Restaurant</title>
+  <style>
+    body { margin:0; font-family: Arial, sans-serif; background:#ffffff; color:#000; }
+    header { background:#000000; padding:20px; text-align:center; color:#d4af37; }
+    nav { display:flex; justify-content:center; background:#d4af37; }
+    nav a { color:#000; text-decoration:none; padding:14px 20px; display:block; font-weight:bold; }
+    nav a:hover { background:#b8860b; color:#fff; }
+    
+    /* Hero Section */
+    .hero {
+      background: url('https://picsum.photos/1600/600?food') no-repeat center center/cover;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero::after {
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.6);
+    }
+    .hero-content {
+      position:relative;
+      z-index:2;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin:0;
+      color:#d4af37;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-top:10px;
+    }
+    .btn {
+      margin-top:20px;
+      background:#d4af37;
+      color:#000;
+      padding:12px 24px;
+      border:none;
+      cursor:pointer;
+      font-size:1rem;
+      border-radius:5px;
+    }
+    .btn:hover { background:#b8860b; color:#fff; }
+
+    section { padding:60px 20px; text-align:center; }
+    section h2 { color:#000; margin-bottom:20px; font-size:2rem; }
+    section p { max-width:800px; margin:0 auto 30px; line-height:1.6; }
+
+    /* Menu Grid */
+    .menu-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+      max-width:1000px;
+      margin:0 auto;
+    }
+    .menu-item {
+      border:1px solid #ddd;
+      border-radius:8px;
+      padding:20px;
+      background:#fff;
+      transition:0.3s;
+    }
+    .menu-item:hover { transform:scale(1.05); border-color:#d4af37; }
+    .menu-item img { max-width:100%; border-radius:8px; }
+    .menu-item h3 { margin:10px 0; color:#000; }
+    .menu-item p { font-size:0.9rem; color:#555; }
+
+    /* Specials */
+    .specials {
+      background:#000;
+      color:#fff;
+      padding:60px 20px;
+    }
+    .specials h2 { color:#d4af37; }
+
+    /* Contact CTA */
+    .contact-cta {
+      background:#f9f9f9;
+      padding:50px 20px;
+    }
+    .contact-cta p { margin:15px 0; }
+
+    footer { background:#000; color:#d4af37; text-align:center; padding:15px; }
+  </style>
+</head>
+<body>
+  <header><h1>Black Gold White Restaurant</h1></header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Menu</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Luxury Dining</h1>
+      <p>Where taste meets elegance.</p>
+      <button class="btn">Reserve a Table</button>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section>
+    <h2>About Us</h2>
+    <p>
+      At Black Gold White Restaurant, we redefine fine dining. Our chefs craft exquisite dishes blending
+      international flavors with local ingredients. Step into an ambiance of sophistication and luxury.
+    </p>
+  </section>
+
+  <!-- Featured Menu -->
+  <section>
+    <h2>Our Featured Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="https://picsum.photos/300/200?dish1" alt="Dish 1">
+        <h3>Grilled Salmon</h3>
+        <p>Fresh Atlantic salmon, perfectly grilled with herbs and spices.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://picsum.photos/300/200?dish2" alt="Dish 2">
+        <h3>Steak Au Poivre</h3>
+        <p>Classic French peppercorn steak with a creamy cognac sauce.</p>
+      </div>
+      <div class="menu-item">
+        <img src="https://picsum.photos/300/200?dish3" alt="Dish 3">
+        <h3>Chocolate Lava Cake</h3>
+        <p>Decadent molten chocolate cake served with vanilla ice cream.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specials -->
+  <section class="specials">
+    <h2>Today's Specials</h2>
+    <p>🍷 Wine Tasting Evenings every Friday</p>
+    <p>🥗 Healthy Gourmet Lunch Combos</p>
+    <p>🍰 Complimentary dessert with every 3-course meal</p>
+  </section>
+
+  <!-- Contact CTA -->
+  <section class="contact-cta">
+    <h2>Get in Touch</h2>
+    <p>📍 Location: Main Street, Chennai</p>
+    <p>📞 Phone: +91 98765 43210</p>
+    <button class="btn">Book Now</button>
+  </section>
+
+  <footer>
+    <p>© 2025 Black Gold White Restaurant | Designed for Demo</p>
+  </footer>
+</body>
+</html>

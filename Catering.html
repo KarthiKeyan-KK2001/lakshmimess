@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <title>Lakshmi Mess - Food Menu</title>
+  <style>
+    :root {
+      --orange: #F36C21;
+      --yellow-orange: #F7941D;
+      --cream: #FFF7F0;
+      --brown-dark: #5C3A21;
+      --brown-med: #7C4D28;
+      --brown-light: #BFA58B;
+      --red: #E30613;
+      --red-dark: #C1272D;
+      --golden: #F6C453;
+      --grey-dark: #4D4D4D;
+      --grey-light: #999999;
+      --black: #000000;
+      --white: #FFFFFF;
+      --green: #4A7C59;
+
+
+
+
+         --orange: #F36C21;
+      --yellow-orange: #F7941D;
+      --cream: #FFF7F0;
+      --brown-dark: #5C3A21;
+      --brown-med: #7C4D28;
+      --brown-light: #BFA58B;
+      --red: #E30613;
+      --red-dark: #C1272D;
+      --golden: #F6C453;
+      --grey-dark: #4D4D4D;
+      --grey-light: #999999;
+      --black: #000000;
+      --white: #FFFFFF;
+
+
+
+      /* Social Media Colors */
+      --facebook: #1877F2;
+      --instagram: #E4405F;
+      --whatsapp: #25D366;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--brown-dark);
+    }
+
+    /* Desktop Navbar */
+    .navbar {
+      background: var(--white);
+      border-bottom: 3px solid var(--orange);
+      padding: 0 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 70px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--orange);
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    /* Desktop: Hide mobile row containers */
+    .first-row,
+    .second-row {
+      display: contents;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--brown-dark);
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    /* Active/Highlighted menu item */
+    .nav-link.active {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--brown-dark);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    /* Hamburger animation when active */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -70%;
+      width: 70%;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      padding: 80px 20px 20px;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-menu .nav-link {
+      display: block;
+      padding: 15px;
+      text-align: center;
+      border: 1px solid var(--brown-light);
+      border-radius: 8px;
+      background: var(--cream);
+      color: var(--brown-dark);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu .nav-link:hover,
+    .mobile-menu .nav-link.active {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+      transform: translateX(-5px);
+    }
+
+    /* Close button in mobile menu */
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--orange);
+      border: none;
+      font-size: 20px;
+      color: var(--white);
+      cursor: pointer;
+      padding: 8px;
+      line-height: 1;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1002;
+    }
+
+    .close-btn:hover {
+      background: var(--red);
+      transform: scale(1.1);
+    }
+
+    /* Mobile Styles */
+    @media screen and (max-width: 768px) {
+      .nav-container {
+        height: 70px;
+        flex-direction: row;
+        padding: 0;
+      }
+
+      .logo {
+        text-align: left;
+        width: auto;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      /* Hide desktop row containers on mobile */
+      .first-row,
+      .second-row {
+        display: none;
+      }
+    }
+
+    /* Page Title */
+    .page-title {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, var(--orange), var(--yellow-orange));
+      color: var(--white);
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .page-title h1 {
+      font-size: 2.5em;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .page-title p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    /* Menu Container */
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      gap: 30px;
+      min-height: 600px;
+    }
+
+    /* Left Sidebar - Categories (1/4) */
+    .menu-categories {
+      flex: 0 0 25%;
+      background: var(--white);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+
+    .menu-categories h2 {
+      color: var(--orange);
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 10px;
+    }
+
+    .category-list {
+      list-style: none;
+    }
+
+    .category-item {
+      margin-bottom: 10px;
+    }
+
+    .category-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--cream);
+      border: 2px solid var(--brown-light);
+      border-radius: 10px;
+      color: var(--brown-dark);
+      font-size: 1em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .category-btn:hover {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(243, 108, 33, 0.3);
+    }
+
+    .category-btn.active {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+      box-shadow: 0 4px 15px rgba(243, 108, 33, 0.3);
+    }
+
+    .category-icon {
+      font-size: 1.2em;
+    }
+
+    /* Right Content - Menu Items (3/4) */
+    .menu-contents {
+      flex: 1;
+      background: var(--white);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+
+    .menu-section {
+      display: none;
+    }
+
+    .menu-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Welcome Message */
+    .welcome-message {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--brown-med);
+    }
+
+    .welcome-message h3 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: var(--orange);
+    }
+
+    .welcome-message p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Structured Menu Layout */
+    .structured-menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 3px solid var(--orange);
+      background: var(--white);
+    }
+
+    /* Column Headers */
+    .column-header {
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .column-header.green {
+      background: var(--green);
+    }
+
+    .column-header.orange {
+      background: var(--orange);
+    }
+
+    /* Menu Column Content */
+    .menu-column-content {
+      padding: 25px;
+      min-height: 400px;
+    }
+
+    /* Menu Items List Style */
+    .menu-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-sPachadi;
+      padding: 8px 0;
+      border-bottom: 1px dotted var(--brown-med);
+      transition: all 0.3s ease;
+    }
+
+    .menu-item-row:hover {
+      background: var(--cream);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border-bottom: 1px dotted transparent;
+      transform: translateX(5px);
+    }
+
+    .menu-item-row:last-child {
+      border-bottom: none;
+    }
+
+    .item-details {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: var(--brown-dark);
+      margin-bottom: 2px;
+    }
+
+    .item-description {
+      font-size: 0.85em;
+      color: var(--brown-med);
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    .item-price {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: var(--orange);
+      margin-left: 15px;
+      white-space: nowrap;
+    }
+
+    /* Special Items */
+    .special-item-row {
+      background: linear-gradient(135deg, var(--golden), var(--yellow-orange));
+      margin: 10px -25px;
+      padding: 15px 35px;
+      position: relative;
+      border-radius: 8px;
+      border: none !important;
+    }
+
+    .special-item-row::before {
+      content: '★';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--red);
+      font-size: 1.5em;
+    }
+
+    .special-item-row .item-name {
+      color: var(--brown-dark);
+    }
+
+    .special-item-row .item-price {
+      color: var(--red);
+    }
+
+    .special-item-row:hover {
+      background: linear-gradient(135deg, var(--golden), var(--orange));
+      transform: translateX(0);
+      padding: 15px 35px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--brown-dark);
+      color: var(--cream);
+      margin-top: 40px;
+    }
+
+    .footer h3 {
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    /* Mobile Styles */
+    @media screen and (max-width: 768px) {
+      .menu-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .menu-categories {
+        flex: none;
+        position: static;
+      }
+
+      .structured-menu {
+        grid-template-columns: 1fr;
+      }
+
+      .page-title h1 {
+        font-size: 2em;
+      }
+
+      .page-title p {
+        font-size: 1em;
+      }
+
+      .column-header {
+        font-size: 1.4em;
+      }
+
+      .menu-column-content {
+        padding: 20px;
+      }
+
+      .special-item-row {
+        margin: 10px -20px;
+        padding: 15px 30px;
+      }
+
+      .special-item-row:hover {
+        padding: 15px 30px;
+      }
+    }
+
+
+    .column-header{
+      text-align: center;
+      justify-content: center;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .structured-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.column-header {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.menu-column-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.menu-items-list {
+  text-align: left;
+  max-width: 500px; /* optional, content narrow ah fix panna */
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Footer Styles */
+    .footer {
+      background: var(--brown-dark);
+      color: var(--white);
+      padding: 40px 20px 20px;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-section h3 {
+      color: var(--orange);
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 5px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo img {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+      border: 2px solid var(--orange);
+    }
+
+    .footer-logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: var(--orange);
+    }
+
+    .footer-content p {
+      line-height: 1.6;
+      margin-bottom: 10px;
+      color: var(--brown-light);
+    }
+
+    /* Quick Links */
+    .quick-links {
+      list-style: none;
+    }
+
+    .quick-links li {
+      margin-bottom: 8px;
+    }
+
+    .quick-links a {
+      color: var(--brown-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      display: inline-block;
+    }
+
+    .quick-links a:hover {
+      color: var(--orange);
+      padding-left: 10px;
+    }
+
+    /* Menu Links */
+    .menu-links {
+      list-style: none;
+    }
+
+    .menu-links li {
+      margin-bottom: 8px;
+    }
+
+    .menu-links a {
+      color: var(--brown-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      display: inline-block;
+    }
+
+    .menu-links a:hover {
+      color: var(--yellow-orange);
+      padding-left: 10px;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      color: var(--brown-light);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--orange);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--white);
+      min-width: 20px;
+    }
+
+    /* Social Media Icons */
+    .social-media {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--grey-light);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Social Media Hover Colors */
+    .social-icon.facebook:hover {
+      background: var(--facebook);
+      border-color: var(--facebook);
+    }
+
+    .social-icon.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      border-color: var(--instagram);
+    }
+
+    .social-icon.whatsapp:hover {
+      background: var(--whatsapp);
+      border-color: var(--whatsapp);
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--brown-med);
+      text-align: center;
+      color: var(--brown-light);
+    }
+
+    .footer-bottom p {
+      font-size: 14px;
+    }
+
+    /* Mobile Responsive */
+    @media screen and (max-width: 768px) {
+      .footer-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Contact info first */
+  .footer-section:nth-child(4) {
+    order: -1;
+  }
+
+   .footer-section:nth-child(1) {
+    /* order: -1; */
+    display: none;
+  }
+
+  .footer-section:nth-child(2) {
+    /* order: -1; */
+    display: none;
+  }
+
+  .footer-section:nth-child(3) {
+    /* order: -1; */
+    display: none;
+  }
+
+      .footer-logo {
+        justify-content: flex-sPachadi;
+      }
+
+      .contact-item {
+        justify-content: flex-sPachadi;
+      }
+
+      .social-media {
+        justify-content: flex-sPachadi;
+      }
+
+      .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+      }
+
+      .footer-section h3 {
+        text-align: left;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+     <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="./index.html" class="logo">
+        <img src="./image/logo.png" alt="Lakmi Mess Logo">
+        <span style="font-family: 'Times New Roman', Times, serif;">Lakshmi Mess</span>
+      </a>
+      
+      <!-- Desktop Menu -->
+      <ul class="nav-menu">
+        <div class="first-row">
+          <li><a href="./index.html" class="nav-link active">Home</a></li>
+          <li><a href="./about.html" class="nav-link">About Us</a></li>
+          <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
+        </div>
+        <div class="second-row">
+          <li><a href="./food_menu.html" class="nav-link">Food Menu</a></li>
+          <li><a href="./sweet&snacks.html" class="nav-link">Sweets Menu</a></li>
+        </div>
+      </ul>
+
+      <!-- Mobile Hamburger -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeBtn">✕</button>
+    <ul>
+      <li><a href="./index.html" class="nav-link">Home</a></li>
+      <li><a href="./about.html" class="nav-link">About Us</a></li>
+      <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
+      <li><a href="./food_menu.html" class="nav-link">Food Menu</a></li>
+      <li><a href="./sweet&snacks.html" class="nav-link">Sweets Menu</a></li>
+      <li><a href="./Catering.html" class="nav-link active">Catering Menu</a></li>
+    </ul>
+  </div>
+
+
+
+  <!-- Page Title -->
+  <div class="page-title">
+    <h1>Our Delicious Catering Menu</h1>
+    <p>Authentic South Indian Cuisine</p>
+  </div>
+
+  <!-- Menu Container -->
+  <div class="menu-container">
+    <!-- Left Sidebar - Categories (1/4) -->
+    <div class="menu-categories">
+      <h2>Menu Categories</h2>
+      <ul class="category-list">
+
+        <li class="category-item">
+          <button class="category-btn active" data-category="sPachadiers">
+            <!-- <span class="category-icon">🥗</span> -->
+            <span>Morning Tiffin / Breakfast</span>
+          </button>
+        </li>
+        <li class="category-item">
+          <button class="category-btn" data-category="lunch">
+            <!-- <span class="category-icon">🫓</span> -->
+            <span>Afternoon Lunch</span>
+          </button>
+        </li>
+       
+         <li class="category-item">
+          <button class="category-btn" data-category="evening">
+            <!-- <span class="category-icon">🫓</span> -->
+            <span>Evening Dinner</span>
+          </button>
+        </li>
+
+        <li class="category-item">
+          <button class="category-btn" data-category="valaikaapu">
+            <!-- <span class="category-icon">🫓</span> -->
+            <span>valaikaapu</span>
+          </button>
+        </li>
+
+      </ul>
+    </div>
+
+    <!-- Right Content - Menu Items (3/4) -->
+    <div class="menu-contents">
+      <!-- Welcome Message -->
+      <div class="menu-section active" id="welcome">
+        <div class="welcome-message">
+          <h3>Welcome to Lakshmi Mess</h3>
+          <p>Discover our authentic South Indian cuisine and specialties. Click on any category from the left menu to explore our delicious offerings. Each dish is prepared with traditional recipes and the finest ingredients to give you an unforgettable dining experience.</p>
+        </div>
+      </div>
+
+      <!-- SPachadiers Section -->
+      <div class="menu-section" id="sPachadiers">
+        <div class="structured-menu">
+          <div class="column-header green">Morning Tiffin / Breakfast</div>
+          <!-- <div class="column-header orange">NON-VEG SPachadiERS</div> -->
+          <div class="menu-column-content">
+            <div class="menu-items-list">
+              <!-- Thattu Vadai Category -->
+              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                <div class="item-details">
+                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">BASIC PACKAGE</div>
+                </div>
+              </div>
+              <div class="menu-item-row">
+                <div class="item-details">
+                  <div class="item-name">Idli – 2</div>
+                  <div class="item-name">Uthappam – 1</div>
+                  <div class="item-name">Pongal – 1</div>
+                  <div class="item-name">Kesari – 1</div>
+                  <div class="item-name">Vadai – 1</div>
+                  <div class="item-name">Sambar</div>
+                  <div class="item-name">Chutney – 2</div>
+                  <div class="item-name">Elai</div>
+
+                  <!-- <div class="item-description">Traditional South Indian lentil fritters</div> -->
+                </div>
+                <!-- <div class="item-price">₹60</div> -->
+              </div>
+             
+              <!-- Thattu Vadai -->
+
+               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                <div class="item-details">
+                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">SILVER PACKAGE</div>
+                </div>
+              </div>
+              <div class="menu-item-row">
+                <div class="item-details">
+                  <div class="item-name">Idli – 2</div>
+                  <div class="item-name">Uthappam – 1</div>
+                  <div class="item-name">Pongal – 1</div>
+                  <div class="item-name">Kesari – 1</div>
+                  <div class="item-name">Vadai – 1</div>
+                  <div class="item-name">Sambar</div>
+                  <div class="item-name">Chutney – 2</div>
+                  <div class="item-name">Elai</div>
+
+                  <!-- <div class="item-description">Crispy fried cauliflower with spicy masala</div> -->
+                </div>
+                <!-- <div class="item-price">₹120</div> -->
+              </div>
+                 
+
+
+
+
+
+             
+
+              <!-- Chinese Category -->
+              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                <div class="item-details">
+                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">GOLD PACKAGE</div>
+                </div>
+              </div>
+              <div class="menu-item-row">
+                <div class="item-details">
+                  <div class="item-name"> Idli – 2</div>
+                  <div class="item-name"> Uthappam – 1</div>
+                  <div class="item-name"> Pongal</div>
+                  <div class="item-name"> Biriyani</div>
+                  <div class="item-name"> Pachadi</div>
+                   <div class="item-name"> Kesari</div>
+                  <div class="item-name"> Chutney – 1</div>
+                  <div class="item-name"> Vada – 1</div>
+                  <div class="item-name"> Sambar </div>
+                  <div class="item-name"> Elai</div>
+
+                  <!-- <div class="item-description">Cauliflower in tangy Indo-Chinese sauce</div> -->
+                </div>
+                <!-- <div class="item-price">₹130</div> -->
+              </div>
+            
+            </div>
+          </div>
+          <div class="menu-column-content">
+            <div class="menu-items-list">
+              <!-- Non-Veg 65 Varieties -->
+              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                <div class="item-details">
+                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">PLATINUM PACKAGE</div>
+                </div>
+              </div>
+              <div class="menu-item-row">
+                <div class="item-details">
+                  <div class="item-name"> Idli – 1</div>
+                  <div class="item-name"> Uthappam – 1</div>
+                  <div class="item-name"> Pongal – 1</div>
+                  <div class="item-name"> Biriyani + Pachadi</div>
+                  <div class="item-name"> Chapati – 1</div>
+                  <div class="item-name"> Poori – 1</div>
+                  <div class="item-name"> Kesari</div>
+                  <div class="item-name"> Chutney – 2</div>
+                  <div class="item-name"> Vada – 1</div>
+                  <div class="item-name"> Sambar</div>
+                  <div class="item-name"> Thengai Paal </div>
+                  <div class="item-name"> Coffee/Tea </div>
+                  <div class="item-name"> Poori Masala</div>
+                  <div class="item-name"> Elai</div>
+                  <!-- <div class="item-description">Spicy deep-fried chicken with traditional spices</div> -->
+                </div>
+                <!-- <div class="item-price">₹180</div> -->
+              </div>
+              
+
+              <!-- Non-Veg Chinese -->
+              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                <div class="item-details">
+                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">DIAMOND VIP PACKAGE</div>
+                </div>
+              </div>
+              <div class="menu-item-row">
+                <div class="item-details">
+                  <div class="item-name"> Sweet – 1</div>
+                  <div class="item-name"> Idli – 1</div>
+                  <div class="item-name"> Uthappam – 1</div>
+                  <div class="item-name"> Pongal – 1</div>
+                  <div class="item-name"> Biriyani + Pachadi</div>
+                  <div class="item-name"> Idiyappam</div>
+                  <div class="item-name"> Poori – 1</div>
+                  <div class="item-name"> Vada – 1</div>
+                  <div class="item-name"> Chutney – 2</div>
+                  <div class="item-name"> Sambar – 1</div>
+                  <div class="item-name"> Thengai Paal </div>
+                  <div class="item-name"> Coffee/Tea </div>
+                  <div class="item-name"> Poori Masala</div>
+                  <div class="item-name"> Ice Cream</div>
+                  <div class="item-name"> paper Cup</div>
+                  <div class="item-name"> Water Bottle (300 ml)</div>
+                  <div class="item-name"> Elai</div>
+                  <div class="item-name"> Paper Roll</div>
+
+                  <!-- <div class="item-description">Chicken in tangy Indo-Chinese sauce</div> -->
+                </div>
+                <!-- <div class="item-price">₹190</div> -->
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="column-header green"> Special Varieties</div>
+
+                <!-- Items -->
+                  <div class="menu-column-content">
+                    <div class="menu-items-list">
+
+                      <!-- Uthappam -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Uthappam</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Uthappam</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">veg Uthappam</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Podi Uthappam</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Thalicha Uthappam</span></div></div>
+
+                      <!-- Biryani -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Biryani</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">veg Biryani</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Kalan Biryani</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Biryani</span></div></div>
+
+                      <!-- Pongal -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pongal</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Milagu Pongal</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Keerai Pongal</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Thakkali Pongal</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Siru Thaniyam Pongal</span></div></div>
+
+                      <!-- Chutney -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Chutney</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Thengai Chutney</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Thakkali Chutney</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Malli Chutney</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">NilaKadalai Chutney</span></div></div>
+
+                      <!-- Pachadi -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pachadi</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Vellarikkai Pachadi</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Vengaya Pachadi</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Nilakadalai Pachadi</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Pasi Payaru Pachadi</span></div></div>
+
+                      <!-- Special -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Special</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Vadai Curry</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Sodhi</span></div></div>
+
+                      <!-- Sweet Varieties -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Sweet Varieties</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Jangiri</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Mysore Pak</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Badusha</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Halwa</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Gulab Jamun</span></div></div>
+
+                      <!-- Cashew Sweets -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Kaju Sweets</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Kaju Biscuit</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Kaju Katli</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Pista Roll</span></div></div>
+
+                      <!-- Halwa -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Halwa</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Ashoka Halwa</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Halwa</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Tirunelveli Halwa</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Poosani Halwa</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Carrot Halwa</span></div></div>
+
+                      <!-- Milk Sweets -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Milk Sweets</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Kalakand Sweet</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Paal Peda</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Milk Cake</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Mango Burfi</span></div></div>
+
+                      <!-- Special Sweets -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Special Sweets</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Jamun Sandwich</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Malai Sandwich</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Rasmalai</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Rasgulla</span></div></div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Jam Jam</span></div></div>
+                      <!-- Ice Cream -->
+                      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+                        <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Ice Cream</div></div>
+                      </div>
+                      <div class="menu-item-row"><div class="item-details"><span class="item-name">Ice Cream</span></div></div>
+
+                    </div>
+                  </div>
+          
+
+
+
+
+
+          
+           
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Breads Section -->
+      <div class="menu-section" id="lunch">
+        <div class="structured-menu">
+          <div class="column-header green">Afternoon lunch</div>
+            <!-- <div class="column-header orange">NON-VEG SPachadiERS</div> -->
+            <div class="menu-column-content">
+              <div class="menu-items-list">
+                
+
+
+                <!-- SILVER PACKAGE -->
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">SILVER PACKAGE</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Saadham</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Rasam</div>
+          <div class="item-name">Moreeee</div>
+          <div class="item-name">Kootu</div>
+          <div class="item-name">Poriyal – 1</div>
+          <div class="item-name">Elai</div>
+
+          <div class="item-name">Optional: Vatha Kuzhambu</div>
+          <div class="item-name">Optional: Thuvaiyal</div>
+        </div>
+      </div>
+
+      <!-- GOLD PACKAGE -->
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">GOLD PACKAGE</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Saadham</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Vatha Kuzhambu</div>
+          <div class="item-name">Rasam</div>
+          <div class="item-name">More</div>
+          <div class="item-name">Poriyal – 1</div>
+          <div class="item-name">Karakari – 1</div>
+          <div class="item-name">Kootu – 1</div>
+          <div class="item-name">Appalam</div>
+          <div class="item-name">Vadai</div>
+          <div class="item-name">Payasam</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+      <!-- PLATINUM PACKAGE -->
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">PLATINUM PACKAGE</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Biryani</div>
+          <div class="item-name">Saadham</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Vatha Kuzhambu</div>
+          <div class="item-name">Rasam</div>
+          <div class="item-name">Poriyal – 1</div>
+          <div class="item-name">Karakari – 1</div>
+          <div class="item-name">Kootu – 1</div>
+          <div class="item-name">Payasam</div>
+          <div class="item-name">Appalam</div>
+          <div class="item-name">Vadai</div>
+          <div class="item-name">Pachadi</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+      <!-- DIAMOND VIP PACKAGE -->
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">DIAMOND VIP PACKAGE</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Sweet</div>
+          <div class="item-name">Biryani</div>
+          <div class="item-name">Pachadi</div>
+          <div class="item-name">Saadham</div>
+          <div class="item-name">Paruppu Nei</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Vatha Kuzhambu / More Kuzhambu</div>
+          <!-- <div class="item-name">Moreee Kuzhambu</div> -->
+          <div class="item-name">Rasam</div>
+          <div class="item-name">Thair</div>
+          <div class="item-name">Poriyal - 1</div>
+          <div class="item-name">Karakari – 1</div>
+          <div class="item-name">Kootu – 1</div>
+          <div class="item-name">Varuval – 1</div>
+          <div class="item-name">Cauliflower 65</div>
+          <div class="item-name">Payasam</div>
+          <div class="item-name">Appalam</div>
+          <div class="item-name">Vadai</div>
+          <div class="item-name">Chips</div>
+          <div class="item-name">Oorugai</div>
+          <div class="item-name">Ice Cream</div>
+          <div class="item-name">Beeda</div>
+          <div class="item-name">Water Bottle (300 ml)</div>
+          <div class="item-name">Elai</div>        
+          <div class="item-name">Paper Cup</div>
+          <div class="item-name">Paper Roll</div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="column-header green"> Special Varieties</div>
+
+              <!-- Items -->
+              <div class="menu-column-content">
+                <div class="menu-items-list">
+
+                  <!-- 🍹 Welcome Drinks -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Welcome Drinks</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Lemon Juice</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Rose Milk</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Badam Milk</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Watermelon Fruit punch</div></div></div>
+
+                  <!-- 🍲 Biryani -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Biryani</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Veg Biryani</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Kalan Biryani</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Bread Biryani</div></div></div>
+
+                  <!-- 🍚 Pulao -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pulao</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Veg Pulao</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Kalan Pulao</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Corn & Green Peas Pulao</div></div></div>
+
+                  <!-- 🍟 Poriyal -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Poriyal</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Carrot Beans Poriyal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Avarakkai Poriyal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Kathamba Poriyal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Beans Usili</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Pudalangai Poriyal</div></div></div>
+
+                  <!-- 🍛 Curry -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Karakari</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Urulai Pattani Karakari</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Valakkai Pirattal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Cauliflower Pirattal</div></div></div>
+
+                  <!-- 🥧 Pachadi -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pachadi</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Vellari Pachadi</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Vangaya Pachadi</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Nilakadalai Pachadi</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">PaasiPairu Pachadi</div></div></div>
+
+                  <!-- 🥗 Kootu -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Kootu</div>
+                    </div>
+                  </div>
+                  <!-- <div class="menu-item-row"><div class="item-details"><div class="item-name">Chausa Kootu</div></div></div> -->
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Pudalangai Kootu</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Urulai Pattani paal Kootu</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Vendakkai Pulimandi</div></div></div>
+
+                  <!-- 🔥 Roasting -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Varuval</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Senai Varuval</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Urulai Varuval</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Vaalai Varuval</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Cauliflower Masala</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Kovakkai masala</div></div></div>
+
+                  <!-- 🍤 65’s -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> 65’s</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Cauliflower 65</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Pudalangai 65</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Urulai 65</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Valakkai 65</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Baby Corn 65</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Vendakkai 65</div></div></div>
+
+                  <!-- 💧 Washing -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Thuvaiyal</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Malli Thuvaiyal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Thengai Thuvaiyal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Paruppu Thuvaiyal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">nilaKadalai Thuvaiyal</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Vaalai Thandu Thuvaiyal</div></div></div>
+
+                  <!-- 🍩 Vada -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Vadai</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Medhu Vadai</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Paruppu Vadai</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Bonda</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Mini Bajji</div></div></div>
+
+                  <!-- 🥟 Snacks -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Snacks</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Cutlet</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Veg Lollipop</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Veg Finger</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Spring Roll</div></div></div>
+
+                  <!-- 🥒 Oorugai -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Oorugai</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Ma Ingi Oorugai</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Pachai Maangai Oorugai</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Thakkali Thokku</div></div></div>
+                  <!-- <div class="menu-item-row"><div class="item-details"><div class="item-name">Pink Tomatoes</div></div></div> -->
+
+                  <!-- 🍬 Sweet Varieties -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Sweet Varieties</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Mini Sweet</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Mini Jangiri</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Mini Mysore Bagh</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Mini Badusha</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Bread Sweet</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Gulab Jamun</div></div></div>
+
+                  <!-- 🥛 Milk Sweets -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Milk Sweets</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Kalakand Sweet</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Milk Peda</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Paal Cake</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Mango Burfi</div></div></div>
+
+                  <!-- 🎂 Special Sweet -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Special Sweet</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Jamun Sandwich</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Malai Sandwich</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Rasamalai</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Rasgulla</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Jum Jum</div></div></div>
+
+                  <!-- 🍮 Halwa -->
+                  <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
+                    <div class="item-details">
+                      <div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Halwa</div>
+                    </div>
+                  </div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Ashoka</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Bread Halwa</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Tirunelveli Halwa</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Poosani Halwa</div></div></div>
+                  <div class="menu-item-row"><div class="item-details"><div class="item-name">Carrot Halwa</div></div></div>
+
+                </div>
+                </div>            
+              </div>
+              </div>
+            </div>
+        </div>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="menu-section" id="evening">
+              <div class="structured-menu">
+                <div class="column-header green">Evening Dinner</div>
+                <!-- <div class="column-header orange">NON-VEG SPachadiERS</div> -->
+                <div class="menu-column-content">
+                  <div class="menu-items-list">
+                    <!-- Thattu Vadai Category -->
+                    <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">SILVER PACKAGE 1</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name"> Idli - 2</div>
+          <div class="item-name">Utthappam - 1</div>
+          <div class="item-name">Chapati - 1</div>
+          <div class="item-name">Kotthu Parota</div>
+          <div class="item-name">Chutney - 2</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Saalna</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+
+
+        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">SILVER PACKAGE 2</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Sweet - 1</div>
+          <div class="item-name">Idli - 2</div>
+          <div class="item-name">Utthappam - 1</div>
+          <div class="item-name">Khichdi</div>
+          <div class="item-name">Vadai</div>
+          <div class="item-name">Chutney - 2</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+
+
+
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">GOLD PACKAGE 1</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Sweet - 1</div>
+          <div class="item-name">cutlet + sauce</div>
+          <div class="item-name">Idli - 2</div>
+          <div class="item-name">Utthappam - 1</div>
+          <div class="item-name">Biryani/Pulao</div>
+          <div class="item-name">Khichdi/Pongal</div>
+          <div class="item-name">Chutney - 2</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Pachadi</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+
+
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">GOLD PACKAGE 2</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Sweet - 1</div>
+          <div class="item-name">cutlet + sauce</div>
+          <div class="item-name">Idli - 2</div>
+          <div class="item-name">Utthappam - 1</div>
+          <div class="item-name">Biryani/Pulao</div>
+          <div class="item-name">Kotthu Parota/ Kotthu karai Chapati</div>
+          <div class="item-name">Chutney - 2</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Pachadi</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+
+
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">PLATINUM PACKAGE 1</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Sweet - 1</div>
+          <div class="item-name">cutlet + sauce</div>
+          <div class="item-name">Idli - 1</div>
+          <div class="item-name">Podi Utthappam - 1</div>
+          <div class="item-name">Kothu Curry Chapati / Kotthu Parota</div>
+           <div class="item-name">Biryani/Pulao</div>
+          <div class="item-name">Idiappam - 1</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Chutney - 2</div>
+          <div class="item-name">Pachadi</div>
+          <div class="item-name">Thengai paal + Cup</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+    
+
+
+
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">PLATINUM PACKAGE 2</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Sweet - 1</div>
+          <div class="item-name">cutlet</div>
+          <div class="item-name">Podi Idli (No.4)</div>
+          <div class="item-name">Veg Uthappam - 1</div>
+          <div class="item-name">Chapati -1 / Parota -1</div>
+          <div class="item-name">Biryani/Pulao</div>
+          <div class="item-name">Idiyappam </div>
+          <div class="item-name">Chutney - 2</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Pachadi</div>
+          <div class="item-name">Khorma </div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+
+
+
+      <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+        <div class="item-details">
+          <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">DIAMOND VIP PACKAGE</div>
+        </div>
+      </div>
+      <div class="menu-item-row">
+        <div class="item-details">
+          <div class="item-name">Sweet - 2</div>
+          <div class="item-name">Welcome Drinks</div>
+          <div class="item-name">Cutlet / Veg Finger</div>
+          <div class="item-name">Veg Spring roll / veg Lollipop</div>
+          <!-- <div class="item-name">Veg Spring Roll</div> -->
+          <div class="item-name">sauce</div>
+          <div class="item-name">Variety Idli (No.3)</div>
+          <div class="item-name">Variety Uthappam</div>
+          <div class="item-name">Biryani / Pulao / Variety Pongal</div>
+          <div class="item-name">Chapati / Naan / Vaalai Ilai Parota / Kotthu Parota</div>
+          <div class="item-name">Variety Noodles / Fried rice</div>
+          <div class="item-name">Gravy</div>
+          <div class="item-name">65's / Manchurian</div>
+          <div class="item-name">Thair Satham</div>
+          <div class="item-name">Chutney - 2</div>
+          <div class="item-name">Sambar</div>
+          <div class="item-name">Pachadi</div>
+          <div class="item-name">Oorugai</div>
+          <div class="item-name">ice-cream</div>
+          <div class="item-name">Sukku Paal / Badam Paal</div>
+          <div class="item-name">Paper Cup</div>
+          <div class="item-name">Water Bottle (300ml)</div>
+          <div class="item-name">Paper Roll</div>
+          <div class="item-name">Elai</div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="column-header green">🍲 Special Varieties</div>
+
+                      <!-- Items -->
+                      <div class="menu-column-content">
+        <div class="menu-items-list">
+
+          <!-- Special Varieties -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Welcome drinks</div></div>
+          </div>
+          <!-- <div class="menu-item-row"><div class="item-details"><span class="item-name">Welcome drinks</span></div></div> -->
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Lemon juice</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Rose milk</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Badam Milk</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Watermelon fruit punch</span></div></div>
+
+          <!-- Idli (No.3) -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Idli</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Podi Idli</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Chili Idli</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Sambar Idli</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Thair Idli</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Pepper Idli</span></div></div>
+
+          <!-- Inflatable -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Utthappam</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Veg Utthappam</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Podi Utthappam</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Thalicha Utthappam</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Karaikudi Utthappam</span></div></div>
+
+          <!-- Pongal -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pongal</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Milagu Pongal</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Keerai Pongal</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Thakkali Pongal</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Siru Thaniyam Pongal</span></div></div>
+
+          <!-- Biryani -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Biryani</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Veg Biryani</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Kalan Biryani</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Biryani</span></div></div>
+
+          <!-- Pulau -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pulao</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Veg Pulao</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Corn & Green Peas Pulao</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Kalan Pulao</span></div></div>
+
+          <!-- Turkey -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pachadi</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Vellari Pachadi</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Vangaya Pachadi</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Nilakadalai Pachadi</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Paasi Pair Pachadi</span></div></div>
+
+          <!-- Chord -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Naan</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Naan</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Butter Naan</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Romali Roti</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Pulka</span></div></div>
+
+          <!-- Noodles -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Noodles</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Veg Noodles</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Kalan Noodles</span></div></div>
+
+          <!-- Manchurian -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Manchurian</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Cauliflower Manchurian</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Baby Corn Manchurian</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Veg Ball Manchurian</span></div></div>
+
+          <!-- 65's -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> 65's</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Cauliflower 65</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Pudalangai 65</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Urulai 65</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Valakkai 65</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Baby Corn 65</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Vendakkai 65</span></div></div>
+
+          <!-- Curd Rice -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Thair Satham</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Thair Satham</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">fruit Thair Satham</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Semiya Thair Satham</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">kambu Thair Satham</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Thair Vadai</span></div></div>
+
+          <!-- Oorugai -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Oorugai</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Ma Ingi Pickle</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Pachai Maangai Pickle</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Thakkali Thokku</span></div></div>
+
+          <!-- Sweet Varieties -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Sweet Varieties</div></div>
+          </div>
+          <!-- <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Sweet</span></div></div> -->
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Jangiri</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Mysore Bagh</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Badusha</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Sweet</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Gulob Jamun</span></div></div>
+
+          <!-- Alva -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Halwa</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Ashoka Halwa</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Halwa</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Tirunelveli Halwa</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Poosani Halwa</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Carrot Halwa</span></div></div>
+
+          <!-- Cashew Sweet -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Kaju Sweet</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Kaju Biscuits</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Kaju Katli</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">pista Roll</span></div></div>
+
+          <!-- Milk Sweet -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Milk Sweet</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Kalakanth Sweet</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Milk Peda</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Milk Cake</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Mango Burfi</span></div></div>
+
+          <!-- Special Sweet -->
+          <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+            <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Special Sweet</div></div>
+          </div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Jamun Sandwich</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Malai Sandwich</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Rasamalai</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Rasgulla</span></div></div>
+          <div class="menu-item-row"><div class="item-details"><span class="item-name">Jum Jum</span></div></div>
+
+        </div>
+                      </div>
+
+                
+
+
+
+
+
+                
+                
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="menu-section" id="valaikaapu">
+                <div class="structured-menu">
+                  <div class="column-header green">valaikaapu</div>
+                  <!-- <div class="column-header orange">NON-VEG SPachadiERS</div> -->
+                  <div class="menu-column-content">
+                    <div class="menu-items-list">
+                      <!-- V1 -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details">
+                <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Varieties 1</div>
+              </div>
+            </div>
+            <div class="menu-item-row">
+              <div class="item-details">
+                <!-- <div class="item-name">Sweet Rice</div> -->
+                <div class="item-name">sakkarai Pongal</div>
+                <div class="item-name">Karkandu Pongal</div>
+                <div class="item-name">Akkaravadasal</div>
+              </div>
+            </div>
+
+            <!-- V2 -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details">
+                <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Varieties 2</div>
+              </div>
+            </div>
+            <div class="menu-item-row">
+              <div class="item-details">
+                <div class="item-name">Thuvaiyal</div>
+                <div class="item-name">Oorugai</div>
+                <div class="item-name">Kootu</div>
+                <div class="item-name">Pachadi</div>
+              </div>
+            </div>
+
+            <!-- V3 -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details">
+                <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Varieties 3</div>
+              </div>
+            </div>
+            <div class="menu-item-row">
+              <div class="item-details">
+                <div class="item-name">Welcome Drinks</div>
+                <div class="item-name">Mukkani Fruit Salad</div>
+                <div class="item-name">65's</div>
+                <div class="item-name">Payasam</div>
+                <div class="item-name">Manchurian</div>
+                <div class="item-name">Sweet</div>
+                <div class="item-name">Beeta</div>
+                <div class="item-name">Vadai</div>
+                  <div class="item-name">Chips</div>
+                  <div class="item-name">Vatthal</div>
+                <!-- <div class="item-name">Sweet Potato</div> -->
+                <div class="item-name">More milakai</div>
+                <div class="item-name">Ice Cream</div>
+              </div>
+            </div>
+
+            <!-- V4 -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details">
+                <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Varieties 4</div>
+              </div>
+            </div>
+            <div class="menu-item-row">
+              <div class="item-details">
+                <div class="item-name">Puli Satham</div>
+                <div class="item-name">Lemon Satham</div>
+                <div class="item-name">Thakkali Satham</div>
+                <div class="item-name">Malli Satham</div>
+                <div class="item-name">Milagu Satham</div>
+                <div class="item-name">Thengai Satham</div>
+                <div class="item-name">Sambar Satham</div>
+                <div class="item-name">Biriyani - Veg / Kalan / Bread</div>
+                <div class="item-name">Pulao</div>
+                <div class="item-name">Carrot Satham</div>
+                <div class="item-name">Maangai Satham</div>
+                <div class="item-name">Vattha kulambu Satham</div>
+                <div class="item-name">Murugai Keerai Satham</div>
+                <div class="item-name">cinna Vangaya Satham</div>
+                <div class="item-name">Valai poo Satham</div>
+                <div class="item-name">SanguPoo Satham</div>
+                <div class="item-name">Palakkai Satham</div>
+                <div class="item-name">Nallikaai Satham</div>
+                <div class="item-name">Aavarampoo Satham</div>
+                <div class="item-name">Fried Rice</div>
+                <div class="item-name">Thai Fried rice</div>
+                <div class="item-name">Schezwan fried Rice</div>
+                <div class="item-name">Thair Satham</div>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      <div class="column-header green">🍲 Special Varieties</div>
+
+                        <!-- Items -->
+                          <div class="menu-column-content">
+          <div class="menu-items-list">
+
+            <!-- Welcome Drinks -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Welcome Drinks</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Lemon Juice</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Rose milk</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Badam Milk</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Watermelon fruit punch</span></div></div>
+
+            <!-- Kootu -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Kootu</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Ennai Kathirikai Kootu</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Kathiri Maangai Kootu</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Urulai Pattani Karaikari</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Kathiri Kondai kadali Kootu</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mochai Kathiri Masala</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mochai Mangai Masala</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Senai Varuval</span></div></div>
+
+            <!-- Green -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Pachadi</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Vellari Pachadi</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Vengaya Pachadi</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Maadhlai Thair Pachadi</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Pasaipairu thair Pachadi</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">NilaKadalai thair Pachadi</span></div></div>
+
+            <!-- 65's -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> 65’s</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Cauliflower 65</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Pudalangai 65</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Urulai 65</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Vazhaikai 65</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Baby Corn 65</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Vendakkai 65</span></div></div>
+
+            <!-- Manchurian -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Manchurian</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Cauliflower Manchurian</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Baby Corn Manchurian</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Veg Ball Manchurian</span></div></div>
+
+            <!-- Boil -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Vadai</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Methu Vadai</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Paruppu Vadai</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Bonda</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Bajji</span></div></div>
+
+            <!-- Chips -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Chips</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Urulai Chips</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Cone Chips</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Pasta Chips</span></div></div>
+
+            <!-- Washing -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Thuvaiyal</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Thengai Thuvaiyal</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Paruppu Thuvaiyal</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Malli Thuvaiyal</span></div></div>
+
+            <!-- Oorugai -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Oorugai</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Ma Inji Oorugai</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Pachai Maangai Oorugai</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Thakkali Thokku</span></div></div>
+
+            <!-- Sweet Varieties -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Sweet Varieties</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Sweet</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Jangiri</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Mysore Bagh</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mini Badusha</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Sweet</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Gulab Jamun</span></div></div>
+
+            <!-- Cashew Sweet -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> kaju Sweet</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">kaju Biscuit</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Kaju Katli</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Pista Roll</span></div></div>
+
+            <!-- Halwa -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Halwa</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Ashoka Halwa</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Bread Halwa</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Tirunelveli Halwa</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Poosani Halwa</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Carrot Halwa</span></div></div>
+
+            <!-- Milk Sweets -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Milk Sweets</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Kalakand</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Paal Peda</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Milk Cake</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Mango Burfi</span></div></div>
+
+            <!-- Special Sweet -->
+            <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
+              <div class="item-details"><div class="item-name" style="color: #5C3A21; font-size: 1.3em;"> Special Sweets</div></div>
+            </div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Jamun Sandwich</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Malai Sandwich</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Rasmalai</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Rasgulla</span></div></div>
+            <div class="menu-item-row"><div class="item-details"><span class="item-name">Jam Jam</span></div></div>
+          </div>
+        </div>
+
+                  
+
+
+
+
+
+                  
+                  
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+     
+    </div>
+  </div>
+
+  <!-- Footer -->
+ <footer class="footer">
+    <div class="footer-container">
+      <!-- Company Info Section -->
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="./image/logo.png" alt="Lakshmi Mess Logo">
+          <span>Lakshmi Mess</span>
+        </div>
+        <div class="footer-content">
+          <p>Serving authentic and delicious South Indian cuisine with traditional recipes passed down through generations. Experience the taste of home-cooked meals in a warm, welcoming environment.</p>
+        </div>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="quick-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./food_menu.html">Food menu</a></li>
+          <li><a href="./sweet&snacks.html">Sweet menu</a></li>
+          <li><a href="#gallery">Contact</a></li>
+          
+        </ul>
+      </div>
+
+      <!-- Menu Section -->
+      <div class="footer-section">
+        <h3>Our Menu</h3>
+        <ul class="menu-links">
+          <li><a href="./food_menu.html">Food Menu</a></li>
+          <li><a href="./sweet&snacks.html">Sweets Menu</a></li>
+          <li><a href="./cataring.html">Catering</a></li>
+          <li><a href="#lunch">Franchises</a></li>
+          <li><a href="#dinner">Party Hall</a></li>
+          <li><a href="./index.html#reviews-section">Reviews</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="footer-section">
+  <h3>Contact Info</h3>
+  <div class="contact-info">
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-phone"></i></div>
+      <span>
+        <a href="tel:+917200698989" style="color: inherit; text-decoration: none;">72006 98989</a> , 
+        <a href="tel:+917200798989" style="color: inherit; text-decoration: none;">72007 98989</a> , 
+        <a href="tel:+917373069697" style="color: inherit; text-decoration: none;">73730 69697</a>
+      </span>
+    </div><br>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+      <span>
+        <a href="mailto:jkanthen@gmail.com" style="color: inherit; text-decoration: none;">jkanthen@gmail.com</a>, 
+        <a href="mailto:lakshmimess@gmail.com" style="color: inherit; text-decoration: none;">lakshmimess@gmail.com</a>
+      </span>
+    </div><br>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <span>
+        25, East Car Street (Kizhakku Radha Veedhi),<br>
+        Athur Road, Near Sivan Temple,<br>
+        Thuraiyur, Tamil Nadu 621010.
+      </span>
+    </div><br>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-clock"></i></div>
+      <span>Open: 6:00 AM - 10:00 PM</span>
+    </div>
+  </div>
+
+  <!-- Social Media Icons -->
+  <div class="social-media">
+    <a href="https://facebook.com/lakshmimess" class="social-icon facebook" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com/lakshmimess" class="social-icon instagram" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/919876543210" class="social-icon whatsapp" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Lakshmi Mess. All rights reserved. | Designed BY <span><a href="https://ignielsofttech.com/" style="text-decoration: none; font-size: large; color: white;">Igniel</a></span></p>
+    </div>
+  </footer>
+
+  <script>
+
+const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Open mobile menu
+    function openMobileMenu() {
+      console.log('Opening menu');
+      mobileMenu.classList.add('active');
+      mobileMenuOverlay.classList.add('active');
+      hamburger.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close mobile menu
+    function closeMobileMenu() {
+      console.log('Closing menu');
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Event listeners
+    hamburger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openMobileMenu();
+    });
+
+    closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileMenu();
+    });
+
+    mobileMenuOverlay.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeMobileMenu();
+    });
+
+    // Close menu when clicking on a menu item
+    const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        closeMobileMenu();
+      });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeMobileMenu();
+      }
+    });
+
+    // Prevent menu from closing when clicking inside it
+    mobileMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+
+    // Menu navigation functionality
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const menuSections = document.querySelectorAll('.menu-section');
+    const welcomeSection = document.getElementById('welcome');
+
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        // Hide all menu sections
+        menuSections.forEach(section => section.classList.remove('active'));
+        
+        // Show the selected section
+        const categoryId = btn.getAttribute('data-category');
+        const targetSection = document.getElementById(categoryId);
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+      });
+    });
+
+    // Initialize with sPachadiers section
+    document.addEventListener('DOMContentLoaded', () => {
+      // Hide welcome message and show sPachadiers
+      welcomeSection.classList.remove('active');
+      document.getElementById('sPachadiers').classList.add('active');
+    });
+
+    // Add smooth scrolling for better mobile experience
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          document.querySelector('.menu-contents').scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add hover effects for menu items
+    document.querySelectorAll('.menu-item-row').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.transform = 'translateX(10px)';
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = 'translateX(0)';
+      });
+    });
+  </script>
+</body>
+</html>

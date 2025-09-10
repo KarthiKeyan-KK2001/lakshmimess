@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A2B Footer</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --orange: #F36C21;
+      --yellow-orange: #F7941D;
+      --cream: #FFF7F0;
+      --brown-dark: #5C3A21;
+      --brown-med: #7C4D28;
+      --brown-light: #BFA58B;
+      --red: #E30613;
+      --red-dark: #C1272D;
+      --golden: #F6C453;
+      --grey-dark: #4D4D4D;
+      --grey-light: #999999;
+      --black: #000000;
+      --white: #FFFFFF;
+      
+      /* Social Media Colors */
+      --facebook: #1877F2;
+      --instagram: #E4405F;
+      --whatsapp: #25D366;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--brown-dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Main content area to push footer to bottom */
+    .main-content {
+      flex: 1;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background: var(--brown-dark);
+      color: var(--white);
+      padding: 40px 20px 20px;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-section h3 {
+      color: var(--orange);
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 5px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo img {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+      border: 2px solid var(--orange);
+    }
+
+    .footer-logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: var(--orange);
+    }
+
+    .footer-content p {
+      line-height: 1.6;
+      margin-bottom: 10px;
+      color: var(--brown-light);
+    }
+
+    /* Quick Links */
+    .quick-links {
+      list-style: none;
+    }
+
+    .quick-links li {
+      margin-bottom: 8px;
+    }
+
+    .quick-links a {
+      color: var(--brown-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      display: inline-block;
+    }
+
+    .quick-links a:hover {
+      color: var(--orange);
+      padding-left: 10px;
+    }
+
+    /* Menu Links */
+    .menu-links {
+      list-style: none;
+    }
+
+    .menu-links li {
+      margin-bottom: 8px;
+    }
+
+    .menu-links a {
+      color: var(--brown-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      display: inline-block;
+    }
+
+    .menu-links a:hover {
+      color: var(--yellow-orange);
+      padding-left: 10px;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      color: var(--brown-light);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--orange);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--white);
+      min-width: 20px;
+    }
+
+    /* Social Media Icons */
+    .social-media {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--grey-light);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Social Media Hover Colors */
+    .social-icon.facebook:hover {
+      background: var(--facebook);
+      border-color: var(--facebook);
+    }
+
+    .social-icon.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      border-color: var(--instagram);
+    }
+
+    .social-icon.whatsapp:hover {
+      background: var(--whatsapp);
+      border-color: var(--whatsapp);
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--brown-med);
+      text-align: center;
+      color: var(--brown-light);
+    }
+
+    .footer-bottom p {
+      font-size: 14px;
+    }
+
+    /* Mobile Responsive */
+    @media screen and (max-width: 768px) {
+      .footer-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Contact info first */
+  .footer-section:nth-child(4) {
+    order: -1;
+  }
+
+   .footer-section:nth-child(1) {
+    /* order: -1; */
+    display: none;
+  }
+
+  .footer-section:nth-child(2) {
+    /* order: -1; */
+    display: none;
+  }
+
+  .footer-section:nth-child(3) {
+    /* order: -1; */
+    display: none;
+  }
+
+      .footer-logo {
+        justify-content: flex-start;
+      }
+
+      .contact-item {
+        justify-content: flex-start;
+      }
+
+      .social-media {
+        justify-content: flex-start;
+      }
+
+      .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+      }
+
+      .footer-section h3 {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Demo content to show footer at bottom -->
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <!-- Company Info Section -->
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="./image/logo.png" alt="Lakshmi Mess Logo">
+          <span>Lakshmi Mess</span>
+        </div>
+        <div class="footer-content">
+          <p>Serving authentic and delicious South Indian cuisine with traditional recipes passed down through generations. Experience the taste of home-cooked meals in a warm, welcoming environment.</p>
+        </div>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="quick-links">
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./about.html">About Us</a></li>
+          <li><a href="./food_menu.html">Food menu</a></li>
+          <li><a href="./sweet&snacks.html">Sweet menu</a></li>
+          <li><a href="#gallery">Contact</a></li>
+          
+        </ul>
+      </div>
+
+      <!-- Menu Section -->
+      <div class="footer-section">
+        <h3>Our Menu</h3>
+        <ul class="menu-links">
+          <li><a href="./food_menu.html">Food Menu</a></li>
+          <li><a href="./sweet&snacks.html">Sweets Menu</a></li>
+          <li><a href="./cataring.html">Catering</a></li>
+          <li><a href="#lunch">Franchises</a></li>
+          <li><a href="#dinner">Party Hall</a></li>
+          <li><a href="./index.html#reviews-section">Reviews</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="footer-section">
+  <h3>Contact Info</h3>
+  <div class="contact-info">
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-phone"></i></div>
+      <span>
+        <a href="tel:+917200698989" style="color: inherit; text-decoration: none;">72006 98989</a> , 
+        <a href="tel:+917200798989" style="color: inherit; text-decoration: none;">72007 98989</a> , 
+        <a href="tel:+917373069697" style="color: inherit; text-decoration: none;">73730 69697</a>
+      </span>
+    </div><br>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+      <span>
+        <a href="mailto:jkanthen@gmail.com" style="color: inherit; text-decoration: none;">jkanthen@gmail.com</a>, 
+        <a href="mailto:lakshmimess@gmail.com" style="color: inherit; text-decoration: none;">lakshmimess@gmail.com</a>
+      </span>
+    </div><br>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <span>
+        25, East Car Street (Kizhakku Radha Veedhi),<br>
+        Athur Road, Near Sivan Temple,<br>
+        Thuraiyur, Tamil Nadu 621010.
+      </span>
+    </div><br>
+    <div class="contact-item">
+      <div class="contact-icon"><i class="fas fa-clock"></i></div>
+      <span>Open: 6:00 AM - 10:00 PM</span>
+    </div>
+  </div>
+
+  <!-- Social Media Icons -->
+  <div class="social-media">
+    <a href="https://facebook.com/lakshmimess" class="social-icon facebook" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://instagram.com/lakshmimess" class="social-icon instagram" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/919876543210" class="social-icon whatsapp" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</div>
+
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Lakshmi Mess. All rights reserved. | Designed BY <span><a href="https://ignielsofttech.com/" style="text-decoration: none; font-size: large; color: white;">Igniel</a></span></p>
+    </div>
+  </footer>
+</body>
+</html>

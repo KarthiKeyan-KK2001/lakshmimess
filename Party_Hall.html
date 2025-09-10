@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  
+  <title>A2B Navbar</title>
+  <style>
+    :root {
+      --orange: #F36C21;
+      --yellow-orange: #F7941D;
+      --cream: #FFF7F0;
+      --brown-dark: #5C3A21;
+      --brown-med: #7C4D28;
+      --brown-light: #BFA58B;
+      --red: #E30613;
+      --red-dark: #C1272D;
+      --golden: #F6C453;
+      --grey-dark: #4D4D4D;
+      --grey-light: #999999;
+      --black: #000000;
+      --white: #FFFFFF;
+
+
+
+
+
+
+
+
+      --orange: #F36C21;
+      --yellow-orange: #F7941D;
+      --cream: #FFF7F0;
+      --brown-dark: #5C3A21;
+      --brown-med: #7C4D28;
+      --brown-light: #BFA58B;
+      --red: #E30613;
+      --red-dark: #C1272D;
+      --golden: #F6C453;
+      --grey-dark: #4D4D4D;
+      --grey-light: #999999;
+      --black: #000000;
+      --white: #FFFFFF;
+      
+      /* Social Media Colors */
+      --facebook: #1877F2;
+      --instagram: #E4405F;
+      --whatsapp: #25D366;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--brown-dark);
+    }
+
+    /* Desktop Navbar */
+    .navbar {
+      background: var(--white);
+      border-bottom: 3px solid var(--orange);
+      padding: 0 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 70px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--orange);
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+      border-radius: 5px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    /* Desktop: Hide mobile row containers */
+    .first-row,
+    .second-row {
+      display: contents;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--brown-dark);
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    /* Active/Highlighted menu item */
+    .nav-link.active {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 5px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--brown-dark);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    /* Hamburger animation when active */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -70%;
+      width: 70%;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: right 0.3s ease;
+      padding: 80px 20px 20px;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-menu .nav-link {
+      display: block;
+      padding: 15px;
+      text-align: center;
+      border: 1px solid var(--brown-light);
+      border-radius: 8px;
+      background: var(--cream);
+      color: var(--brown-dark);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu .nav-link:hover,
+    .mobile-menu .nav-link.active {
+      background: var(--orange);
+      color: var(--white);
+      border-color: var(--orange);
+      transform: translateX(-5px);
+    }
+
+    /* Close button in mobile menu */
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--orange);
+      border: none;
+      font-size: 20px;
+      color: var(--white);
+      cursor: pointer;
+      padding: 8px;
+      line-height: 1;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      z-index: 1002;
+    }
+
+    .close-btn:hover {
+      background: var(--red);
+      transform: scale(1.1);
+    }
+
+    /* Mobile Styles */
+    @media screen and (max-width: 768px) {
+      .nav-container {
+        height: 70px;
+        flex-direction: row;
+        padding: 0;
+      }
+
+      .logo {
+        text-align: left;
+        width: auto;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      /* Hide desktop row containers on mobile */
+      .first-row,
+      .second-row {
+        display: none;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     /* Main content area to push footer to bottom */
+    .main-content {
+      flex: 1;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background: var(--brown-dark);
+      color: var(--white);
+      padding: 40px 20px 20px;
+      margin-top: auto;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-section h3 {
+      color: var(--orange);
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      border-bottom: 2px solid var(--orange);
+      padding-bottom: 5px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .footer-logo img {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+      border: 2px solid var(--orange);
+    }
+
+    .footer-logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: var(--orange);
+    }
+
+    .footer-content p {
+      line-height: 1.6;
+      margin-bottom: 10px;
+      color: var(--brown-light);
+    }
+
+    /* Quick Links */
+    .quick-links {
+      list-style: none;
+    }
+
+    .quick-links li {
+      margin-bottom: 8px;
+    }
+
+    .quick-links a {
+      color: var(--brown-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      display: inline-block;
+    }
+
+    .quick-links a:hover {
+      color: var(--orange);
+      padding-left: 10px;
+    }
+
+    /* Menu Links */
+    .menu-links {
+      list-style: none;
+    }
+
+    .menu-links li {
+      margin-bottom: 8px;
+    }
+
+    .menu-links a {
+      color: var(--brown-light);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 5px 0;
+      display: inline-block;
+    }
+
+    .menu-links a:hover {
+      color: var(--yellow-orange);
+      padding-left: 10px;
+    }
+
+    /* Contact Info */
+    .contact-info {
+      color: var(--brown-light);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .contact-icon {
+      width: 20px;
+      height: 20px;
+      background: var(--orange);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--white);
+      min-width: 20px;
+    }
+
+    /* Social Media Icons */
+    .social-media {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--grey-light);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 20px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Social Media Hover Colors */
+    .social-icon.facebook:hover {
+      background: var(--facebook);
+      border-color: var(--facebook);
+    }
+
+    .social-icon.instagram:hover {
+      background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      border-color: var(--instagram);
+    }
+
+    .social-icon.whatsapp:hover {
+      background: var(--whatsapp);
+      border-color: var(--whatsapp);
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--brown-med);
+      text-align: center;
+      color: var(--brown-light);
+    }
+
+    .footer-bottom p {
+      font-size: 14px;
+    }
+
+    /* Mobile Responsive */
+    @media screen and (max-width: 768px) {
+      .footer-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Contact info first */
+  .footer-section:nth-child(4) {
+    order: -1;
+  }
+
+   .footer-section:nth-child(1) {
+    /* order: -1; */
+    display: none;
+  }
+
+  .footer-section:nth-child(2) {
+    /* order: -1; */
+    display: none;
+  }
+
+  .footer-section:nth-child(3) {
+    /* order: -1; */
+    display: none;
+  }
+
+      .footer-logo {
+        justify-content: flex-start;
+      }
+
+      .contact-item {
+        justify-content: flex-start;
+      }
+
+      .social-media {
+        justify-content: flex-start;
+      }
+
+      .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 22px;
+      }
+
+      .footer-section h3 {
+        text-align: left;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    /* Party Hall Section */
+    .party-hall-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, var(--cream) 0%, #FFF2E6 100%);
+      min-height: 100vh;
+    }
+
+    .section-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section */
+    .hero-content {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .hero-title {
+      font-size: 3.5em;
+      font-weight: bold;
+      color: var(--brown-dark);
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .hero-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--yellow-orange));
+      border-radius: 2px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3em;
+      color: var(--brown-med);
+      margin-bottom: 30px;
+      font-style: italic;
+    }
+
+    /* Cards Grid */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    /* Event Cards */
+    .event-card {
+      height: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .event-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    /* Background Images */
+    .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+      transition: transform 0.4s ease;
+    }
+
+    .event-card:hover::before {
+      transform: scale(1.1);
+    }
+
+    /* Background images for different events */
+    .birthday::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('./image/birth.jpeg');
+    }
+
+    .engagement::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('./image/engment.jpg');
+    }
+
+    .corporate::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('./image/meeting.jpg');
+    }
+
+    .baby-shower::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('./image/baby.jpg');
+    }
+
+    .family::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .mangal::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+    }
+
+    .valaikappu::before {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                        url('./image/valaikapu.jpg');
+    }
+
+    /* Card Content */
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
+      z-index: 2;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      text-align: center;
+    }
+
+    .card-title {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: var(--white);
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .book-now-btn {
+      background: linear-gradient(135deg, var(--orange), var(--red));
+      color: var(--white);
+      border: none;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 20px rgba(243, 108, 33, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-now-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .book-now-btn:hover::before {
+      left: 100%;
+    }
+
+    .book-now-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(243, 108, 33, 0.6);
+      background: linear-gradient(135deg, var(--red), var(--red-dark));
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: var(--brown-dark);
+      color: var(--white);
+      padding: 60px 30px;
+      margin-top: 80px;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--brown-dark), var(--brown-med));
+      opacity: 0.9;
+    }
+
+    .contact-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-title {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: var(--orange);
+    }
+
+    .contact-subtitle {
+      font-size: 1.2em;
+      margin-bottom: 40px;
+      color: var(--cream);
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: var(--cream);
+      font-size: 1.1em;
+    }
+
+    .contact-icon {
+      background: var(--orange);
+      padding: 12px;
+      border-radius: 50%;
+      font-size: 1.2em;
+    }
+
+    .main-cta {
+      background: linear-gradient(135deg, var(--golden), var(--yellow-orange));
+      color: var(--brown-dark);
+      border: none;
+      padding: 20px 40px;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .main-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(246, 196, 83, 0.4);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5em;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .event-card {
+        height: 350px;
+        margin: 0 10px;
+      }
+
+      .card-title {
+        font-size: 1.5em;
+      }
+
+      .contact-info {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .contact-title {
+        font-size: 2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .party-hall-section {
+        padding: 40px 15px;
+      }
+
+      .hero-title {
+        font-size: 2em;
+      }
+
+      .event-card {
+        height: 300px;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .card-title {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+      }
+
+      .book-now-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+      }
+
+      .contact-section {
+        padding: 40px 20px;
+        margin-top: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="./index.html" class="logo">
+        <img src="./image/logo.png" alt="Lakmi Mess Logo">
+        <span style="font-family: 'Times New Roman', Times, serif;">Lakshmi Mess</span>
+      </a>
+      
+      <!-- Desktop Menu -->
+      <ul class="nav-menu">
+        <div class="first-row">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./about.html" class="nav-link">About Us</a></li>
+          <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
+        </div>
+        <div class="second-row">
+          <li><a href="./food_menu.html" class="nav-link">Food Menu</a></li>
+          <li><a href="./sweet&snacks.html" class="nav-link">Sweets Menu</a></li>
+        </div>
+      </ul>
+
+      <!-- Mobile Hamburger -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeBtn">✕</button>
+    <ul>
+      <li><a href="./index.html" class="nav-link ">Home</a></li>
+      <li><a href="./about.html" class="nav-link">About Us</a></li>
+      <li><a href="./contact.html" class="nav-link">Contact Us</a></li>
+      <li><a href="./food_menu.html" class="nav-link">Food Menu</a></li>
+      <li><a href="./sweet&snacks.html" class="nav-link">Sweets Menu</a></li>
+      <li><a href="./Catering.html" class="nav-link">Catering Menu</a></li>
+    </ul>
+  </div>
+
+
+
+
+
+
+
+
+
+<section class="party-hall-section">
+    <div class="section-container">
+      <!-- Hero Section -->
+      <div class="hero-content">
+        <h1 class="hero-title">Celebrate in Style</h1>
+        <p class="hero-subtitle">Make Your Special Moments Unforgettable at Lakshmi Mess Party Hall</p>
+      </div>
+
+      <!-- Events Grid -->
+      <div class="events-grid">
+        <!-- Birthday Card -->
+        <div class="event-card birthday">
+          <div class="card-content">
+            <h3 class="card-title">Birthday Celebrations</h3>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Engagement Card -->
+        <div class="event-card engagement">
+          <div class="card-content">
+            <h3 class="card-title">Engagement Ceremonies</h3>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Corporate Meetings Card -->
+        <div class="event-card corporate">
+          <div class="card-content">
+            <h3 class="card-title">Corporate Meetings</h3>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Baby Shower Card -->
+        <div class="event-card baby-shower">
+          <div class="card-content">
+            <h3 class="card-title">Baby Showers</h3>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+        <!-- Family Gatherings Card -->
+        <div class="event-card family">
+          <div class="card-content">
+            <h3 class="card-title">Family Gatherings</h3>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+
+
+
+        <!-- Valaikappu Card -->
+        <div class="event-card valaikappu">
+          <div class="card-content">
+            <h3 class="card-title">Valaikappu Ceremony</h3>
+            <button class="book-now-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="contact-section">
+        <div class="contact-content">
+          <h2 class="contact-title">Ready to Book Your Event?</h2>
+          <p class="contact-subtitle">Let's make your celebration unforgettable</p>
+          
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-phone contact-icon"></i>
+              <span>72006 98989</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope contact-icon"></i>
+              <span>lakshmimess@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock contact-icon"></i>
+              <span>6:00 AM - 10:00 PM</span>
+            </div>
+          </div>
+          
+          <button class="main-cta">Contact Us Today</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Open mobile menu
+    function openMobileMenu() {
+      console.log('Opening menu');
+      mobileMenu.classList.add('active');
+      mobileMenuOverlay.classList.add('active');
+      hamburger.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close mobile menu
+    function closeMobileMenu() {
+      console.log('Closing menu');
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Event listeners
+    hamburger.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openMobileMenu();
+    });
+
+    closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileMenu();
+    });
+
+    mobileMenuOverlay.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeMobileMenu();
+    });
+
+    // Close menu when clicking on a menu item
+    const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        closeMobileMenu();
+      });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeMobileMenu();
+      }
+    });
+
+    // Prevent menu from closing when clicking inside it
+    mobileMenu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     // Add click functionality to buttons
+    document.querySelectorAll('.book-now-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        // Get the event type from the parent card
+        const card = this.closest('.event-card');
+        const eventType = card.querySelector('.card-title').textContent;
+        
+        // You can add your booking logic here
+        alert(`Booking request for: ${eventType}\nPlease call us at 72006 98989 to confirm your booking.`);
+      });
+    });
+
+    document.querySelector('.main-cta').addEventListener('click', function() {
+      // Scroll to contact info or open contact form
+      alert('Contact us at:\nPhone: 72006 98989 | 72007 98989\nEmail: lakshmimess@gmail.com');
+    });
+  </script>
+</body>
+</html>
