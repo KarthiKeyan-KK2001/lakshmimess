@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <title>Lakshmi Mess - Food Menu</title>
   <style>
     :root {
@@ -22,27 +21,6 @@
       --black: #000000;
       --white: #FFFFFF;
       --green: #4A7C59;
-
-
-
-
-         --orange: #F36C21;
-      --yellow-orange: #F7941D;
-      --cream: #FFF7F0;
-      --brown-dark: #5C3A21;
-      --brown-med: #7C4D28;
-      --brown-light: #BFA58B;
-      --red: #E30613;
-      --red-dark: #C1272D;
-      --golden: #F6C453;
-      --grey-dark: #4D4D4D;
-      --grey-light: #999999;
-      --black: #000000;
-      --white: #FFFFFF;
-
-
-
-      /* Social Media Colors */
       --facebook: #1877F2;
       --instagram: #E4405F;
       --whatsapp: #25D366;
@@ -55,18 +33,21 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: var(--cream);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
       color: var(--brown-dark);
+      overflow-x: hidden;
     }
 
-    /* Desktop Navbar */
+    /* Navbar Styles - UNCHANGED */
     .navbar {
       background: var(--white);
       border-bottom: 3px solid var(--orange);
       padding: 0 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: relative;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .nav-container {
@@ -100,9 +81,7 @@
       gap: 30px;
     }
 
-    /* Desktop: Hide mobile row containers */
-    .first-row,
-    .second-row {
+    .first-row, .second-row {
       display: contents;
     }
 
@@ -115,18 +94,11 @@
       transition: all 0.3s ease;
     }
 
-    .nav-link:hover {
+    .nav-link:hover, .nav-link.active {
       background: var(--orange);
       color: var(--white);
     }
 
-    /* Active/Highlighted menu item */
-    .nav-link.active {
-      background: var(--orange);
-      color: var(--white);
-    }
-
-    /* Hamburger Menu Styles */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -144,7 +116,6 @@
       border-radius: 2px;
     }
 
-    /* Hamburger animation when active */
     .hamburger.active span:nth-child(1) {
       transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -157,7 +128,6 @@
       transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    /* Mobile Menu Overlay */
     .mobile-menu-overlay {
       position: fixed;
       top: 0;
@@ -176,7 +146,6 @@
       visibility: visible;
     }
 
-    /* Mobile Menu */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -208,20 +177,8 @@
       border: 1px solid var(--brown-light);
       border-radius: 8px;
       background: var(--cream);
-      color: var(--brown-dark);
-      font-weight: 500;
-      transition: all 0.3s ease;
     }
 
-    .mobile-menu .nav-link:hover,
-    .mobile-menu .nav-link.active {
-      background: var(--orange);
-      color: var(--white);
-      border-color: var(--orange);
-      transform: translateX(-5px);
-    }
-
-    /* Close button in mobile menu */
     .close-btn {
       position: absolute;
       top: 20px;
@@ -232,459 +189,477 @@
       color: var(--white);
       cursor: pointer;
       padding: 8px;
-      line-height: 1;
       border-radius: 50%;
       width: 35px;
       height: 35px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 1002;
     }
 
-    .close-btn:hover {
-      background: var(--red);
-      transform: scale(1.1);
-    }
-
-    /* Mobile Styles */
     @media screen and (max-width: 768px) {
-      .nav-container {
-        height: 70px;
-        flex-direction: row;
-        padding: 0;
-      }
-
-      .logo {
-        text-align: left;
-        width: auto;
-      }
-
       .nav-menu {
         display: none;
       }
-
       .hamburger {
         display: flex;
       }
+    }
 
-      /* Hide desktop row containers on mobile */
-      .first-row,
-      .second-row {
-        display: none;
+    /* Hero Section with Animation */
+    .hero-section {
+      position: relative;
+      height: 400px;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--yellow-orange) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 50px;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23ffffff" opacity="0.1"/></svg>') repeat-x;
+      animation: wave 20s linear infinite;
+    }
+
+    @keyframes wave {
+      0% { background-position: 0 0; }
+      100% { background-position: 1200px 0; }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5em;
+      color: var(--white);
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+      margin-bottom: 15px;
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .hero-content p {
+      font-size: 1.5em;
+      color: var(--cream);
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    .hero-icon {
+      font-size: 4em;
+      color: var(--white);
+      margin-bottom: 20px;
+      animation: bounceIn 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    /* Page Title */
-    .page-title {
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(135deg, var(--orange), var(--yellow-orange));
-      color: var(--white);
-      margin-bottom: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
-    .page-title h1 {
-      font-size: 2.5em;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
-    .page-title p {
-      font-size: 1.2em;
-      margin-top: 10px;
-      opacity: 0.9;
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     /* Menu Container */
     .menu-container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      gap: 30px;
-      min-height: 600px;
+      padding: 0 30px 50px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
     }
 
-    /* Left Sidebar - Categories (1/4) */
+    /* Category Sidebar */
     .menu-categories {
-      flex: 0 0 25%;
       background: var(--white);
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      padding: 30px 20px;
+      box-shadow: 0 10px 40px rgba(243, 108, 33, 0.15);
       height: fit-content;
       position: sticky;
-      top: 20px;
+      top: 90px;
+      border: 2px solid var(--orange);
     }
 
-    .menu-categories h2 {
-      color: var(--orange);
-      font-size: 1.5em;
-      margin-bottom: 20px;
+    .categories-title {
       text-align: center;
-      border-bottom: 2px solid var(--orange);
-      padding-bottom: 10px;
+      color: var(--orange);
+      font-size: 1.6em;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid var(--orange);
+      position: relative;
+    }
+
+    .categories-title::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--golden);
     }
 
     .category-list {
       list-style: none;
-    }
-
-    .category-item {
-      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .category-btn {
       width: 100%;
-      padding: 15px;
-      background: var(--cream);
-      border: 2px solid var(--brown-light);
-      border-radius: 10px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+      border: 2px solid transparent;
+      border-radius: 15px;
       color: var(--brown-dark);
       font-size: 1em;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .category-btn:hover::before {
+      left: 100%;
+    }
+
+    .category-btn:hover {
+      transform: translateX(8px);
+      border-color: var(--orange);
+      box-shadow: 0 8px 25px rgba(243, 108, 33, 0.25);
+    }
+
+    .category-btn.active {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--yellow-orange) 100%);
+      color: var(--white);
+      border-color: var(--orange);
+      box-shadow: 0 8px 30px rgba(243, 108, 33, 0.4);
+      transform: translateX(8px);
+    }
+
+    .category-icon {
+      font-size: 1.4em;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* Menu Content Area */
+    .menu-contents {
+      background: var(--white);
+      border-radius: 25px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      min-height: 600px;
+      border: 2px solid var(--cream);
+    }
+
+    .menu-section {
+      display: none;
+      animation: fadeInScale 0.6s ease-out;
+    }
+
+    .menu-section.active {
+      display: block;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-header h2 {
+      font-size: 2.5em;
+      color: var(--orange);
+      display: inline-block;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+      border-radius: 50px;
+      box-shadow: 0 5px 20px rgba(243, 108, 33, 0.2);
+      position: relative;
+    }
+
+    .section-header h2::before {
+      /* content: '🍴'; */
+      position: absolute;
+      left: 10px;
+      font-size: 0.8em;
+    }
+
+    .section-header h2::after {
+      /* content: '🍴'; */
+      position: absolute;
+      right: 10px;
+      font-size: 0.8em;
+    }
+
+    /* Menu Grid Layout */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+    }
+
+    /* Category Group */
+    .category-group {
+      background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+      border-radius: 20px;
+      padding: 25px;
+      border: 2px solid var(--brown-light);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-group::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(243, 108, 33, 0.05) 0%, transparent 70%);
+      transition: transform 0.6s ease;
+    }
+
+    .category-group:hover::before {
+      transform: translate(-25%, -25%);
+    }
+
+    .category-group:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(243, 108, 33, 0.2);
+      border-color: var(--orange);
+    }
+
+    .category-group-title {
+      font-size: 1.6em;
+      color: var(--brown-dark);
+      margin-bottom: 20px;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--golden) 0%, var(--yellow-orange) 100%);
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(246, 196, 83, 0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Menu Items */
+    .menu-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-item-card {
+      background: var(--white);
+      padding: 15px 20px;
+      border-radius: 12px;
+      border-left: 4px solid var(--orange);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-item-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--orange) 0%, var(--yellow-orange) 100%);
+      transition: width 0.3s ease;
+    }
+
+    .menu-item-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 8px 25px rgba(243, 108, 33, 0.15);
+      background: linear-gradient(135deg, #fff 0%, var(--cream) 100%);
+    }
+
+    .menu-item-card:hover::before {
+      width: 100%;
+      opacity: 0.1;
+    }
+
+    .item-name {
+      font-size: 1.15em;
+      font-weight: 600;
+      color: var(--brown-dark);
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .category-btn:hover {
-      background: var(--orange);
-      color: var(--white);
-      border-color: var(--orange);
-      transform: translateX(5px);
-      box-shadow: 0 4px 15px rgba(243, 108, 33, 0.3);
+    .item-name::before {
+      content: '•';
+      color: var(--orange);
+      font-size: 1.5em;
+      line-height: 0;
     }
 
-    .category-btn.active {
-      background: var(--orange);
-      color: var(--white);
-      border-color: var(--orange);
-      box-shadow: 0 4px 15px rgba(243, 108, 33, 0.3);
+    /* Special Items */
+    .special-item {
+      background: linear-gradient(135deg, var(--golden) 0%, var(--yellow-orange) 100%);
+      border-left-color: var(--red);
+      position: relative;
     }
 
-    .category-icon {
-      font-size: 1.2em;
+    .special-item::after {
+      content: '⭐';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5em;
+      animation: pulse 2s infinite;
     }
 
-    /* Right Content - Menu Items (3/4) */
-    .menu-contents {
-      flex: 1;
-      background: var(--white);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    @keyframes pulse {
+      0%, 100% {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-50%) scale(1.2);
+        opacity: 0.8;
+      }
     }
 
-    .menu-section {
-      display: none;
-    }
-
-    .menu-section.active {
-      display: block;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .special-item .item-name {
+      color: var(--brown-dark);
+      font-weight: 700;
     }
 
     /* Welcome Message */
     .welcome-message {
       text-align: center;
-      padding: 60px 20px;
-      color: var(--brown-med);
+      padding: 80px 40px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .welcome-icon {
+      font-size: 5em;
+      margin-bottom: 30px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
 
     .welcome-message h3 {
-      font-size: 2em;
-      margin-bottom: 20px;
+      font-size: 2.5em;
       color: var(--orange);
+      margin-bottom: 20px;
     }
 
     .welcome-message p {
-      font-size: 1.2em;
-      line-height: 1.6;
-      max-width: 600px;
+      font-size: 1.3em;
+      color: var(--brown-med);
+      line-height: 1.8;
+      max-width: 700px;
       margin: 0 auto;
     }
 
-    /* Structured Menu Layout */
-    .structured-menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 3px solid var(--orange);
-      background: var(--white);
-    }
-
-    /* Column Headers */
-    .column-header {
-      color: var(--white);
-      padding: 20px;
-      text-align: center;
-      font-size: 1.8em;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    }
-
-    .column-header.green {
-      background: var(--green);
-    }
-
-    .column-header.orange {
-      background: var(--orange);
-    }
-
-    /* Menu Column Content */
-    .menu-column-content {
-      padding: 25px;
-      min-height: 400px;
-    }
-
-    /* Menu Items List Style */
-    .menu-items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .menu-item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 8px 0;
-      border-bottom: 1px dotted var(--brown-med);
-      transition: all 0.3s ease;
-    }
-
-    .menu-item-row:hover {
-      background: var(--cream);
-      padding: 8px 10px;
-      border-radius: 8px;
-      border-bottom: 1px dotted transparent;
-      transform: translateX(5px);
-    }
-
-    .menu-item-row:last-child {
-      border-bottom: none;
-    }
-
-    .item-details {
-      flex: 1;
-    }
-
-    .item-name {
-      font-weight: bold;
-      font-size: 1.1em;
-      color: var(--brown-dark);
-      margin-bottom: 2px;
-    }
-
-    .item-description {
-      font-size: 0.85em;
-      color: var(--brown-med);
-      font-style: italic;
-      line-height: 1.3;
-    }
-
-    .item-price {
-      font-weight: bold;
-      font-size: 1.1em;
-      color: var(--orange);
-      margin-left: 15px;
-      white-space: nowrap;
-    }
-
-    /* Special Items */
-    .special-item-row {
-      background: linear-gradient(135deg, var(--golden), var(--yellow-orange));
-      margin: 10px -25px;
-      padding: 15px 35px;
-      position: relative;
-      border-radius: 8px;
-      border: none !important;
-    }
-
-    .special-item-row::before {
-      content: '★';
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--red);
-      font-size: 1.5em;
-    }
-
-    .special-item-row .item-name {
-      color: var(--brown-dark);
-    }
-
-    .special-item-row .item-price {
-      color: var(--red);
-    }
-
-    .special-item-row:hover {
-      background: linear-gradient(135deg, var(--golden), var(--orange));
-      transform: translateX(0);
-      padding: 15px 35px;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--brown-dark);
-      color: var(--cream);
-      margin-top: 40px;
-    }
-
-    .footer h3 {
-      color: var(--orange);
-      margin-bottom: 10px;
-    }
-
-    /* Mobile Styles */
-    @media screen and (max-width: 768px) {
-      .menu-container {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .menu-categories {
-        flex: none;
-        position: static;
-      }
-
-      .structured-menu {
-        grid-template-columns: 1fr;
-      }
-
-      .page-title h1 {
-        font-size: 2em;
-      }
-
-      .page-title p {
-        font-size: 1em;
-      }
-
-      .column-header {
-        font-size: 1.4em;
-      }
-
-      .menu-column-content {
-        padding: 20px;
-      }
-
-      .special-item-row {
-        margin: 10px -20px;
-        padding: 15px 30px;
-      }
-
-      .special-item-row:hover {
-        padding: 15px 30px;
-      }
-    }
-
-
-    .column-header{
-      text-align: center;
-      justify-content: center;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .structured-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.column-header {
-  text-align: center;
-  font-size: 1.8em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.menu-column-content {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.menu-items-list {
-  text-align: left;
-  max-width: 500px; /* optional, content narrow ah fix panna */
-  width: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* Footer Styles */
+    /* Footer Styles - UNCHANGED */
     .footer {
       background: var(--brown-dark);
       color: var(--white);
       padding: 40px 20px 20px;
-      margin-top: auto;
+      margin-top: 80px;
     }
 
     .footer-container {
@@ -729,16 +704,15 @@
       color: var(--brown-light);
     }
 
-    /* Quick Links */
-    .quick-links {
+    .quick-links, .menu-links {
       list-style: none;
     }
 
-    .quick-links li {
+    .quick-links li, .menu-links li {
       margin-bottom: 8px;
     }
 
-    .quick-links a {
+    .quick-links a, .menu-links a {
       color: var(--brown-light);
       text-decoration: none;
       transition: all 0.3s ease;
@@ -746,34 +720,11 @@
       display: inline-block;
     }
 
-    .quick-links a:hover {
+    .quick-links a:hover, .menu-links a:hover {
       color: var(--orange);
       padding-left: 10px;
     }
 
-    /* Menu Links */
-    .menu-links {
-      list-style: none;
-    }
-
-    .menu-links li {
-      margin-bottom: 8px;
-    }
-
-    .menu-links a {
-      color: var(--brown-light);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      padding: 5px 0;
-      display: inline-block;
-    }
-
-    .menu-links a:hover {
-      color: var(--yellow-orange);
-      padding-left: 10px;
-    }
-
-    /* Contact Info */
     .contact-info {
       color: var(--brown-light);
     }
@@ -798,7 +749,6 @@
       min-width: 20px;
     }
 
-    /* Social Media Icons */
     .social-media {
       display: flex;
       gap: 15px;
@@ -825,23 +775,18 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    /* Social Media Hover Colors */
     .social-icon.facebook:hover {
       background: var(--facebook);
-      border-color: var(--facebook);
     }
 
     .social-icon.instagram:hover {
       background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-      border-color: var(--instagram);
     }
 
     .social-icon.whatsapp:hover {
       background: var(--whatsapp);
-      border-color: var(--whatsapp);
     }
 
-    /* Footer Bottom */
     .footer-bottom {
       margin-top: 30px;
       padding-top: 20px;
@@ -850,73 +795,78 @@
       color: var(--brown-light);
     }
 
-    .footer-bottom p {
-      font-size: 14px;
-    }
-
     /* Mobile Responsive */
-    @media screen and (max-width: 768px) {
-      .footer-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Contact info first */
-  .footer-section:nth-child(4) {
-    order: -1;
-  }
-
-   .footer-section:nth-child(1) {
-    /* order: -1; */
-    display: none;
-  }
-
-  .footer-section:nth-child(2) {
-    /* order: -1; */
-    display: none;
-  }
-
-  .footer-section:nth-child(3) {
-    /* order: -1; */
-    display: none;
-  }
-
-      .footer-logo {
-        justify-content: flex-start;
+    @media screen and (max-width: 1024px) {
+      .menu-container {
+        grid-template-columns: 1fr;
       }
 
-      .contact-item {
-        justify-content: flex-start;
+      .menu-categories {
+        position: static;
+        margin-bottom: 30px;
       }
 
-      .social-media {
-        justify-content: flex-start;
-      }
-
-      .social-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 22px;
-      }
-
-      .footer-section h3 {
-        text-align: left;
+      .category-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       }
     }
 
+    @media screen and (max-width: 768px) {
+      .hero-section {
+        height: 300px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.2em;
+      }
+
+      .hero-content p {
+        font-size: 1.1em;
+      }
+
+      .menu-contents {
+        padding: 25px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header h2 {
+        font-size: 1.8em;
+        padding: 12px 30px;
+      }
+
+      .category-list {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-section:nth-child(1),
+      .footer-section:nth-child(2),
+      .footer-section:nth-child(3) {
+        display: none;
+      }
+
+      .footer-section:nth-child(4) {
+        order: -1;
+      }
+    }
   </style>
 </head>
 <body>
-
-     <!-- Navigation Bar -->
-   <nav class="navbar">
+  <!-- Navigation Bar - UNCHANGED -->
+  <nav class="navbar">
     <div class="nav-container">
       <a href="./index.html" class="logo">
-        <img src="./image/logo.png" alt="Lakmi Mess Logo">
-      <span style="font-family: 'Times New Roman', Times, serif;">Lakshmi Mess</span>
+        <img src="./image/logo.png" alt="Lakshmi Mess Logo">
+        <span style="font-family: 'Times New Roman', Times, serif;">Lakshmi Mess</span>
       </a>
       
-      <!-- Desktop Menu -->
       <ul class="nav-menu">
         <div class="first-row">
           <li><a href="./index.html" class="nav-link">Home</a></li>
@@ -929,7 +879,6 @@
         </div>
       </ul>
 
-      <!-- Mobile Hamburger -->
       <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
@@ -938,10 +887,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-
-  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="close-btn" id="closeBtn">✕</button>
     <ul>
@@ -954,1792 +900,886 @@
     </ul>
   </div>
 
-
-
-  <!-- Page Title -->
-  <div class="page-title">
-    <h1>Our Delicious Food Menu</h1>
-    <p>Authentic South Indian Cuisine & More</p>
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <div class="hero-icon">🍽️</div>
+      <h1>Delicious Food Menu</h1>
+      <p>Authentic South Indian Cuisine & More</p>
+    </div>
   </div>
 
   <!-- Menu Container -->
   <div class="menu-container">
-    <!-- Left Sidebar - Categories (1/4) -->
+    <!-- Category Sidebar -->
     <div class="menu-categories">
-      <h2>Menu Categories</h2>
+      <h2 class="categories-title">Menu Categories</h2>
       <ul class="category-list">
-
         <li class="category-item">
           <button class="category-btn active" data-category="lakshmi-special">
             <span class="category-icon">⭐</span>
-            <span>LAKSHMI SPECIAL</span>
+            <span>Lakshmi Special</span>
           </button>
         </li>
-
-
         <li class="category-item">
           <button class="category-btn" data-category="starters">
             <!-- <span class="category-icon">🥗</span> -->
-            <span>STARTERS</span>
+            <span>Starters</span>
           </button>
         </li>
         <li class="category-item">
           <button class="category-btn" data-category="breads">
-            <!-- <span class="category-icon">🫓</span> -->
-            <span>BREADS</span>
+            <!-- <span class="category-icon">🥖</span> -->
+            <span>Breads</span>
           </button>
         </li>
         <li class="category-item">
           <button class="category-btn" data-category="soup">
-            <!-- <span class="category-icon">🲲</span> -->
-            <span>SOUP</span>
+            <!-- <span class="category-icon">🍲</span> -->
+            <span>Soup</span>
           </button>
         </li>
-
         <li class="category-item">
-          <button class="category-btn" data-category="Gravies">
-            <!-- <span class="category-icon">🲲</span> -->
-            <span>GRAVIES</span>
+          <button class="category-btn" data-category="gravies">
+            <!-- <span class="category-icon">🍛</span> -->
+            <span>Gravies</span>
           </button>
         </li>
-        
         <li class="category-item">
           <button class="category-btn" data-category="chinese">
             <!-- <span class="category-icon">🥢</span> -->
-            <span>CHINESE</span>
+            <span>Chinese</span>
           </button>
         </li>
         <li class="category-item">
           <button class="category-btn" data-category="idly">
-            <!-- <span class="category-icon">🽯️</span> -->
-            <span>IDLY & Idiyappam</span>
+            <!-- <span class="category-icon">🍚</span> -->
+            <span>Idly & Idiyappam</span>
           </button>
         </li>
         <li class="category-item">
           <button class="category-btn" data-category="dosai">
             <!-- <span class="category-icon">🥞</span> -->
-            <span>DOSAI VARIETIES</span>
+            <span>Dosai Varieties</span>
           </button>
         </li>
         <li class="category-item">
           <button class="category-btn" data-category="ice-cream">
-            <!-- <span class="category-icon">🦦</span> -->
-            <span>ICE CREAM & JUICE</span>
+            <!-- <span class="category-icon">🍦</span> -->
+            <span>Ice Cream & Juice</span>
           </button>
         </li>
-        
       </ul>
     </div>
 
-    <!-- Right Content - Menu Items (3/4) -->
+    <!-- Menu Content -->
     <div class="menu-contents">
-      <!-- Welcome Message -->
+      <!-- Welcome Section -->
       <div class="menu-section active" id="welcome">
         <div class="welcome-message">
+          <!-- <div class="welcome-icon">🍴</div> -->
           <h3>Welcome to Lakshmi Mess</h3>
-          <p>Discover our authentic South Indian cuisine and specialties. Click on any category from the left menu to explore our delicious offerings. Each dish is prepared with traditional recipes and the finest ingredients to give you an unforgettable dining experience.</p>
+          <p>Discover our authentic South Indian cuisine and specialties. Select any category to explore our delicious offerings prepared with traditional recipes and the finest ingredients.</p>
+        </div>
+      </div>
+
+      <!-- Lakshmi Special Section -->
+      <div class="menu-section" id="lakshmi-special">
+        <div class="section-header">
+          <h2>Lakshmi Mess Special</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Dosai Specials</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card special-item">
+                <div class="item-name">Set Dosai + Vadakari</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Panju Dosai + Kuruma</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Karaikudi Dosai + Chinna Vengaya Kulambu</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Special Rice</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card special-item">
+                <div class="item-name">Mushroom Vadaichatti Choru</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Panner Vadaichatti Choru</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Veg Kaima Poricha Choru</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Sukka Varieties</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card special-item">
+                <div class="item-name">Paneer Pallipalayam</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Mushroom Pallipalayam</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Veg Chicken Chukka</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Veg Chicken Manchurian</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Tawa Panner</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Meals & Variety Rice</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Mini Meals</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Meals</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Special Meals</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Biriyani</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Sambar Satham</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Curd Rice</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Vathal Kulambu Satham</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Starters Section -->
       <div class="menu-section" id="starters">
-        <div class="structured-menu">
-          <div class="column-header green">VEGETARIAN STARTERS</div>
-          <!-- <div class="column-header orange">NON-VEG STARTERS</div> -->
-          <div class="menu-column-content">
+        <div class="section-header">
+          <h2>Starters</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Chats & Snacks</div>
             <div class="menu-items-list">
-              <!-- Thattu Vadai Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Chats & Snacks</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Paani Poori (6nos)</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Paani Poori (6nos)</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Masala Poori</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Masala Poori</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">French Fries</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">French Fries</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Spring Roll (4nos)</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Spring Roll (4nos)</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Cutlet</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Cutlet</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Cheese Balls (8nos)</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Cheese Balls (8nos)</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Fried Momos</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Fried Momos</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Peri Peri Momos</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Peri Peri Momos</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Schezwan Momos</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
-              </div>
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Thattu Vadai</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Thattu Vadai set (4nos)</div>
-                </div>
-                <!-- <div class="item-price">₹120</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Onion Set</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-              
-
-
-
-
-
-             
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Chinese</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Gobi Manchurian</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Manchurian</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Paneer Manchurian</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilly Babycorn</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Apollo Paneer</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Andhra Spicy Paneer</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Baby Corn Salt & Pepper</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Basil Paneer Fry</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Schezwan Momos</div>
               </div>
             </div>
           </div>
-          <div class="menu-column-content">
+
+          <div class="category-group">
+            <div class="category-group-title">Thattu Vadai</div>
             <div class="menu-items-list">
-              <!-- Non-Veg 65 Varieties -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Chinese</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Thattu Vadai Set (4nos)</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Gobi Manchurian</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Onion Set</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Manchurian</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Manchurian</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilly Babycorn</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Apollo Panner</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Andra Spicy Panner</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Baby Corn Salt & Pepper</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Basil Panner Fry</div>
-                </div>
-              </div>
+            </div>
+          </div>
 
-              <!-- Non-Veg Chinese -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Tantoori</div>
-                </div>
+          <div class="category-group">
+            <div class="category-group-title">Chinese Starters</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Gobi Manchurian</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Dravidar Panner Chaps</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Manchurian</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Tikka</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Paneer Manchurian</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Arabian Kabab</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chilly Babycorn</div>
               </div>
+              <div class="menu-item-card">
+                <div class="item-name">Apollo Paneer</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Andhra Spicy Paneer</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Baby Corn Salt & Pepper</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Basil Paneer Fry</div>
+              </div>
+            </div>
+          </div>
 
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mexican Kabab</div>
-                </div>
+          <div class="category-group">
+            <div class="category-group-title">Tandoori</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Dravidar Panner Chaps</div>
               </div>
+              <div class="menu-item-card">
+                <div class="item-name">Panner Tikka</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Arabian Kabab</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mexican Kabab</div>
+              </div>
+            </div>
+          </div>
 
-              <!-- Other Non-Veg Starters -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">65 Varieties</div>
-                </div>
+          <div class="category-group">
+            <div class="category-group-title">65 Varieties</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Gobi 65</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Gobi 65</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom 65</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom 65</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Panner 65</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner 65</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Babycorn 65</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Babycorn 65</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-
 
       <!-- Breads Section -->
       <div class="menu-section" id="breads">
-        <div class="structured-menu">
-
-    <!-- Title -->
-    <div class="column-header green">BREADS</div>
-
-    <!-- Items -->
-    <div class="menu-column-content">
-      <div class="menu-items-list">
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Naan</div>
-          </div>
+        <div class="section-header">
+          <h2>Breads</h2>
         </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Butter Naan</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Garlic Naan</div>
-          </div>
-        </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilly Cheese Naan</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pulka</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Tandoori Roti</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Romali Roti</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
-              </div>
-
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Chappathi</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chappathi</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kothu Kari Chappathi</div>
-                </div>
-              </div>
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kaalan Chappathi</div>
-                </div>
-              </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Chappathi</div>
-                </div>
-              </div>
-
-              
-             
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Ribbon Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kothu Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pepper Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Cheese Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilly Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Vaalai Ilai Parotta</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Gothumai Parotta</div>
-                </div>
-              </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Ceylon Panner Parotta</div>
-                </div>
-              </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Ceylon Mushroom Parotta</div>
-                </div>
-              </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chola Poori</div>
-                </div>
-              </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Poori</div>
-                </div>
-              </div>
-
-              
-              
-            </div>
-          </div>
-          
-        </div>
-      </div>
-
-
-      <!-- Soup -->
-      <div class="menu-section" id="soup">
-        <div class="structured-menu">
-
-    <!-- Title -->
-    <div class="column-header green">SOUP & GRAVIES</div>
-
-    <!-- Items -->
-          <div class="menu-column-content">
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Naan</div>
             <div class="menu-items-list">
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Soup</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Sweet Corn Soup</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Hot & Sour Soup</div>
-          </div>
-        </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Tomato Soup</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Butter Naan</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Soup</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Garlic Naan</div>
               </div>
-              
-
-             
-              
-              
+              <div class="menu-item-card">
+                <div class="item-name">Chilly Cheese Naan</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Pulka</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Tandoori Roti</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Romali Roti</div>
+              </div>
             </div>
           </div>
-          
+
+          <div class="category-group">
+            <div class="category-group-title">Chappathi</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Chappathi</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Kothu Kari Chappathi</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Kaalan Chappathi</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Panner Chappathi</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Parotta</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Ribbon Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Kothu Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Pepper Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Cheese Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chilly Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Vaalai Ilai Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Gothumai Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Ceylon Panner Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Ceylon Mushroom Parotta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chola Poori</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Poori</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-
-
-      <!--Gravies Section -->
-      <div class="menu-section" id="Gravies">
-        <div class="structured-menu">
-
-    <!-- Title -->
-    <div class="column-header green"> GRAVIES</div>
-
-    <!-- Items -->
-          <div class="menu-column-content">
-            <div class="menu-items-list">            
-
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">North Indian</div>
-                </div>
+      <!-- Soup Section -->
+      <div class="menu-section" id="soup">
+        <div class="section-header">
+          <h2>Soup</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Hot Soups</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Sweet Corn Soup</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Butter Masala</div>
-                </div>
-                <!-- <div class="item-price">₹120</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Hot & Sour Soup</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kadai Panner</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Tomato Soup</div>
               </div>
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kadai Mushroom</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Soup</div>
               </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mutter Panner</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-               <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Malai Kofta</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mix Veg Curry</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Green Peas Masala</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-
-
-
-
-
-
-
-              
-             
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">South Indian</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Fry</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Sukka</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Gobi Pepper Fry</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Karaikudi Panner Masala</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Nagarathar Kaalan Curry</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chettinadu Vegetable</div>
-                </div>
-              </div>
-              
-              
-              
             </div>
           </div>
-          
+        </div>
+      </div>
+
+      <!-- Gravies Section -->
+      <div class="menu-section" id="gravies">
+        <div class="section-header">
+          <h2>Gravies</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">North Indian</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Panner Butter Masala</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Kadai Panner</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Kadai Mushroom</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mutter Panner</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Malai Kofta</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mix Veg Curry</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Green Peas Masala</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">South Indian</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Fry</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Panner Sukka</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Gobi Pepper Fry</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Karaikudi Panner Masala</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Nagarathar Kaalan Curry</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chettinadu Vegetable</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Chinese Section -->
       <div class="menu-section" id="chinese">
-        <div class="structured-menu">
-
-    <!-- Title -->
-    <div class="column-header green">Chinese</div>
-
-    <!-- Items -->
-    <div class="menu-column-content">
-      <div class="menu-items-list">
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Fried Rice</div>
-          </div>
+        <div class="section-header">
+          <h2>Chinese</h2>
         </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Veg Fried Rice</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Mushroom Fried Rice</div>
-          </div>
-        </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Fried Rice</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Fried Rice</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Veg Fried Rice</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Schezwan Fried Rice</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Fried Rice</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Thaai Fried Rice</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Panner Fried Rice</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilli Garlic Fried Rice</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Schezwan Fried Rice</div>
               </div>
-
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Noodles</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Thaai Fried Rice</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Veg Noodles</div>
-                </div>
-                <!-- <div class="item-price">₹120</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Chilli Garlic Fried Rice</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Noodles</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Noodles</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Schezwan Noodles</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Thaai Noodles</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-             
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilli Garlic Noodles</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-
-
-
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Chinese</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Gobi Manchurian</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Manchurian</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Manchurian</div>
-                </div>
-                <!-- <div class="item-price">₹155</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilly Babycorn</div>
-                </div>
-                <!-- <div class="item-price">₹135</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Apollo Panner</div>
-                </div>
-                <!-- <div class="item-price">₹160</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Andra Spicy Panner</div>
-                </div>
-                <!-- <div class="item-price">₹165</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Baby Corn Salt & Pepper</div>
-                </div>
-                <!-- <div class="item-price">₹125</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Basil Panner Fry</div>
-                </div>
-                <!-- <div class="item-price">₹170</div> -->
-              </div>
-
-             
-
-              
-              
             </div>
           </div>
-          
+
+          <div class="category-group">
+            <div class="category-group-title">Noodles</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Veg Noodles</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Noodles</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Panner Noodles</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Schezwan Noodles</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Thaai Noodles</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chilli Garlic Noodles</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-
-      <!-- Idly & Dosai Section -->
+      <!-- Idly Section -->
       <div class="menu-section" id="idly">
-        <div class="structured-menu">
-
-    <!-- Title -->
-      <div class="column-header green">IDLY & Idiyappam</div>
-
-    <!-- Items -->
-           <div class="menu-column-content">
-      <div class="menu-items-list">
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Idly</div>
-          </div>
+        <div class="section-header">
+          <h2>Idly & Idiyappam</h2>
         </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Idly</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Idicha Podi Thattu Idly</div>
-          </div>
-        </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Sambar Idly</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Idly Varieties</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Idly</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Masala Idly</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Idicha Podi Thattu Idly</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Idly</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Sambar Idly</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pepper Idly</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Masala Idly</div>
               </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chilly Malli Idly</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Podi Idly</div>
               </div>
-
-              
-
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Idiyappam</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Pepper Idly</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Idiyappam</div>
-                </div>
-                <!-- <div class="item-price">₹120</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Chilly Malli Idly</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Madurai Sevai</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Sevai</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-             
-
-
-
-                           
             </div>
           </div>
-          
+
+          <div class="category-group">
+            <div class="category-group-title">Idiyappam</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Idiyappam</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Madurai Sevai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Sevai</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Dosai Section -->
       <div class="menu-section" id="dosai">
-        <div class="structured-menu">
-
-    <!-- Title -->
-      <div class="column-header green">DOSAI</div>
-
-    <!-- Items -->
-           <div class="menu-column-content">
-      <div class="menu-items-list">
-
-
-
-
-
-
-
-
-                      <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Dosai</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kal Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹155</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Poondu Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹135</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chettinadu Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹160</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Onion Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹165</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Cheese Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹125</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mysore Masal Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹170</div> -->
-              </div>
-
-             
-
-              
-
-
-
-
-
-
-
-               <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Rava Dosai</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Rava Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Onion Rava Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Rava Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹155</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Spl. Rava Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹135</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Andra Rava Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹160</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chettinad Rava Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹165</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Ghee Rava Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹125</div> -->
-              </div>
-
-
-
-
-
-
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Roast</div>
-          </div>
+        <div class="section-header">
+          <h2>Dosai Varieties</h2>
         </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Roast</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Onion Roast</div>
-          </div>
-        </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Ghee Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Plain Dosai</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Dosai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Masala Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Kal Dosai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Masala Ghee Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Podi Dosai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Masala Onion Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Poondu Dosai</div>
               </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Chettinadu Dosai</div>
               </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Masala Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Onion Dosai</div>
               </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Ghee Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Cheese Dosai</div>
               </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Onion Roast</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Mysore Masal Dosai</div>
               </div>
-
-
-     
-
-              
-
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Uthappam</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Satha Uthappam</div>
-                </div>
-                <!-- <div class="item-price">₹120</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Onion Uthappam</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Podi Ghee Uthappam</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Thuthuvala Podi Uthappam</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Vallarai Podi Uthappam</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Karuvepillai Podi Uthappam</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Madurai Kari Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kaalan Curry Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Curry Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Masala Dosai</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Masala Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Madurai Masala Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chinese Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹155</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Italy Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹135</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Masala Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹160</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Masala Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹165</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kothukari Masala Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹125</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Cauliflower 65 Masala Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹170</div> -->
-              </div>
-
-             
-
-               <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Childrens Dosai</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chocolate Cone Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Cheese Cone Dosai</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>                           
             </div>
           </div>
-          
+
+          <div class="category-group">
+            <div class="category-group-title">Rava Dosai</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Rava Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Onion Rava Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Podi Rava Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Spl. Rava Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Andra Rava Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chettinad Rava Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Ghee Rava Dosai</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Roast</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Onion Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Ghee Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Masala Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Masala Ghee Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Masala Onion Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Podi Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Podi Masala Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Podi Ghee Roast</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Podi Onion Roast</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Uthappam</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Satha Uthappam</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Onion Uthappam</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Podi Ghee Uthappam</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Thuthuvala Podi Uthappam</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Vallarai Podi Uthappam</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Karuvepillai Podi Uthappam</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Madurai Kari Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Kaalan Curry Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Panner Curry Dosai</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Masala Dosai</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Masala Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Madurai Masala Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chinese Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Italy Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mushroom Masala Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Panner Masala Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Kothukari Masala Dosai</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Cauliflower 65 Masala Dosai</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Children's Special</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card special-item">
+                <div class="item-name">Chocolate Cone Dosai</div>
+              </div>
+              <div class="menu-item-card special-item">
+                <div class="item-name">Cheese Cone Dosai</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-
-      <!-- Ice Cream & Juice Section -->
+      <!-- Ice Cream Section -->
       <div class="menu-section" id="ice-cream">
-        <div class="structured-menu">
-
-    <!-- Title -->
-      <div class="column-header green">ICE CREAM & JUICE</div>
-
-    <!-- Items -->
-           <div class="menu-column-content">
-      <div class="menu-items-list">
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Ice Cream</div>
-          </div>
+        <div class="section-header">
+          <h2>Ice Cream & Juice</h2>
         </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Venilla</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Strawberry</div>
-          </div>
-        </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chocolate</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+        <div class="menu-grid">
+          <div class="category-group">
+            <div class="category-group-title">Ice Cream</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Venilla</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Butter Scotch</div>
-                </div>
-                <!-- <div class="item-price">₹60</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Strawberry</div>
               </div>
-              
-
-              
-
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Special</div>
-                </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chocolate</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Brownie with Ice Cream</div>
-                </div>
-                <!-- <div class="item-price">₹120</div> -->
+              <div class="menu-item-card">
+                <div class="item-name">Butter Scotch</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Triple Sundae</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Gulobjamun with Ice Cream</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Rasamalai</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
-              </div>
-
-
-             
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Milk Shake</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Venilla</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Strawberry</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Chocolate</div>
-                </div>
-                <!-- <div class="item-price">₹155</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Butter Scotch</div>
-                </div>
-                <!-- <div class="item-price">₹135</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Milkshake with Ice Cream</div>
-                </div>
-                <!-- <div class="item-price">₹160</div> -->
-              </div>
-             
-
-             
-
-               <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Fresh Juice</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Lemon Mint Juice</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Sweet Lime Juice</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>   
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Maadulai Juice</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Orange Juice</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Watermelon Juice</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Lemon Soda (Sweet / Salt)</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Mocktail</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Holloween Blue</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Virgin Mojito</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>   
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Huawai Baby</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Valentino</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Green Punch</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-              
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-               <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Lassi</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Sweet Lassi</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Strawberry Lassi</div>
-                </div>
-              </div>   
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mango Lassi</div>
-                </div>
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Salt Lassi</div>
-                </div>
-              </div>
-              
             </div>
           </div>
-          
-        </div>
-      </div>
 
-
-      <!-- Lakshmi Special Section -->
-      <div class="menu-section" id="lakshmi-special">
-         <div class="structured-menu">
-
-    <!-- Title -->
-      <div class="column-header green">LAKSHMI MESS SPECIAL</div>
-
-    <!-- Items -->
-           <div class="menu-column-content">
-      <div class="menu-items-list">
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Dosai</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Set Dosai + Vadakari</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Panju Dosai + Kuruma</div>
-          </div>
-        </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Karaikudi Dosai + Chinna Vengaya Kulambu</div>
-                </div>
-              </div>           
-
-              
-
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Rice</div>
-                </div>
+          <div class="category-group">
+            <div class="category-group-title">Special Desserts</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card special-item">
+                <div class="item-name">Brownie with Ice Cream</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Vadaichatti Choru</div>
-                </div>
-                <!-- <div class="item-price">₹120</div> -->
+              <div class="menu-item-card special-item">
+                <div class="item-name">Triple Sundae</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Panner Vadaichatti Choru</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
+              <div class="menu-item-card special-item">
+                <div class="item-name">Gulobjamun with Ice Cream</div>
               </div>
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Veg Kaima Poricha Choru</div>
-                </div>
-                <!-- <div class="item-price">₹140</div> -->
+              <div class="menu-item-card special-item">
+                <div class="item-name">Rasamalai</div>
               </div>
-
-
-             
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Sukka</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Paneer Pallipalayam</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Pallipalayam</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Veg Chicken Chukka</div>
-                </div>
-                <!-- <div class="item-price">₹155</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Veg Chicken Manchurian</div>
-                </div>
-                <!-- <div class="item-price">₹135</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Tawa Panner</div>
-                </div>
-                <!-- <div class="item-price">₹160</div> -->
-              </div>
-             
-
-             
-
-               <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Meals</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mini Meals</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Meals</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>   
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Special Meals</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-                <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Variety Rice</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mushroom Biriyani</div>
-                </div>
-                <!-- <div class="item-price">₹130</div> -->
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Sambar Satham</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>   
-              
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Curd Rice</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Vathal Kulambu Satham</div>
-                </div>
-                <!-- <div class="item-price">₹145</div> -->
-              </div>
-
-              
             </div>
           </div>
-          
+
+          <div class="category-group">
+            <div class="category-group-title">Milk Shake</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Venilla</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Strawberry</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Chocolate</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Butter Scotch</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Milkshake with Ice Cream</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Fresh Juice</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Lemon Mint Juice</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Sweet Lime Juice</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Maadulai Juice</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Orange Juice</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Watermelon Juice</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Lemon Soda (Sweet / Salt)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Mocktail</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Holloween Blue</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Virgin Mojito</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Huawai Baby</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Valentino</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Green Punch</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-group">
+            <div class="category-group-title">Lassi</div>
+            <div class="menu-items-list">
+              <div class="menu-item-card">
+                <div class="item-name">Sweet Lassi</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Strawberry Lassi</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Mango Lassi</div>
+              </div>
+              <div class="menu-item-card">
+                <div class="item-name">Salt Lassi</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Footer -->
-<footer class="footer">
+  <!-- Footer - UNCHANGED -->
+  <footer class="footer">
     <div class="footer-container">
-      <!-- Company Info Section -->
       <div class="footer-section">
         <div class="footer-logo">
           <img src="./image/logo.png" alt="Lakshmi Mess Logo">
@@ -2750,7 +1790,6 @@
         </div>
       </div>
 
-      <!-- Quick Links Section -->
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul class="quick-links">
@@ -2759,11 +1798,9 @@
           <li><a href="./food_menu.html">Food menu</a></li>
           <li><a href="./sweet&snacks.html">Sweet menu</a></li>
           <li><a href="#gallery">Contact</a></li>
-          
         </ul>
       </div>
 
-      <!-- Menu Section -->
       <div class="footer-section">
         <h3>Our Menu</h3>
         <ul class="menu-links">
@@ -2776,87 +1813,78 @@
         </ul>
       </div>
 
-      <!-- Contact Section -->
       <div class="footer-section">
-  <h3>Contact Info</h3>
-  <div class="contact-info">
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-phone"></i></div>
-      <span>
-        <a href="tel:+917200698989" style="color: inherit; text-decoration: none;">72006 98989</a> , 
-        <a href="tel:+917200798989" style="color: inherit; text-decoration: none;">72007 98989</a> , 
-        <a href="tel:+917373069697" style="color: inherit; text-decoration: none;">73730 69697</a>
-      </span>
-    </div><br>
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-      <span>
-        <a href="mailto:jkanthen@gmail.com" style="color: inherit; text-decoration: none;">jkanthen@gmail.com</a>, 
-        <a href="mailto:lakshmimessthuraiyur@gmail.com" style="color: inherit; text-decoration: none;">lakshmimessthuraiyur@gmail.com</a>
-      </span>
-    </div><br>
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-      <span>
-        25, East Car Street (Kizhakku Radha Veedhi),<br>
-        Athur Road, Near Sivan Temple,<br>
-        Thuraiyur, Tamil Nadu 621010.
-      </span>
-    </div><br>
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-clock"></i></div>
-      <span>Open: 6:00 AM - 10:00 PM</span>
-    </div>
-  </div>
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <span>
+              <a href="tel:+917200698989" style="color: inherit; text-decoration: none;">72006 98989</a>, 
+              <a href="tel:+917200798989" style="color: inherit; text-decoration: none;">72007 98989</a>, 
+              <a href="tel:+917373069697" style="color: inherit; text-decoration: none;">73730 69697</a>
+            </span>
+          </div><br>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <span>
+              <a href="mailto:jkanthen@gmail.com" style="color: inherit; text-decoration: none;">jkanthen@gmail.com</a>, 
+              <a href="mailto:lakshmimessthuraiyur@gmail.com" style="color: inherit; text-decoration: none;">lakshmimessthuraiyur@gmail.com</a>
+            </span>
+          </div><br>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <span>
+              25, East Car Street (Kizhakku Radha Veedhi),<br>
+              Athur Road, Near Sivan Temple,<br>
+              Thuraiyur, Tamil Nadu 621010.
+            </span>
+          </div><br>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+            <span>Open: 6:00 AM - 10:00 PM</span>
+          </div>
+        </div>
 
-  <!-- Social Media Icons -->
-  <div class="social-media">
-    <a href="https://facebook.com/lakshmimess" class="social-icon facebook" title="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://instagram.com/lakshmimess" class="social-icon instagram" title="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://wa.me/919876543210" class="social-icon whatsapp" title="WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  </div>
-</div>
-
+        <div class="social-media">
+          <a href="https://facebook.com/lakshmimess" class="social-icon facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/lakshmimess" class="social-icon instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/919876543210" class="social-icon whatsapp" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
     </div>
 
-    <!-- Footer Bottom -->
     <div class="footer-bottom">
       <p>&copy; 2025 Lakshmi Mess. All rights reserved. | Designed BY <span><a href="https://ignielsofttech.com/" style="text-decoration: none; font-size: large; color: white;">Igniel</a></span></p>
     </div>
   </footer>
 
   <script>
-
-const hamburger = document.getElementById('hamburger');
+    // Mobile Menu
+    const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     const closeBtn = document.getElementById('closeBtn');
 
-    // Open mobile menu
     function openMobileMenu() {
-      console.log('Opening menu');
       mobileMenu.classList.add('active');
       mobileMenuOverlay.classList.add('active');
       hamburger.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    // Close mobile menu
     function closeMobileMenu() {
-      console.log('Closing menu');
       mobileMenu.classList.remove('active');
       mobileMenuOverlay.classList.remove('active');
       hamburger.classList.remove('active');
       document.body.style.overflow = 'auto';
     }
 
-    // Event listeners
     hamburger.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -2874,7 +1902,6 @@ const hamburger = document.getElementById('hamburger');
       closeMobileMenu();
     });
 
-    // Close menu when clicking on a menu item
     const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
     mobileNavLinks.forEach(link => {
       link.addEventListener('click', function() {
@@ -2882,20 +1909,17 @@ const hamburger = document.getElementById('hamburger');
       });
     });
 
-    // Handle window resize
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) {
         closeMobileMenu();
       }
     });
 
-    // Prevent menu from closing when clicking inside it
     mobileMenu.addEventListener('click', function(e) {
       e.stopPropagation();
     });
 
-
-    // Menu navigation functionality
+    // Menu Navigation
     const categoryBtns = document.querySelectorAll('.category-btn');
     const menuSections = document.querySelectorAll('.menu-section');
     const welcomeSection = document.getElementById('welcome');
@@ -2916,36 +1940,70 @@ const hamburger = document.getElementById('hamburger');
         const targetSection = document.getElementById(categoryId);
         if (targetSection) {
           targetSection.classList.add('active');
+          
+          // Smooth scroll to content on mobile
+          if (window.innerWidth <= 1024) {
+            setTimeout(() => {
+              targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+          }
         }
       });
     });
 
-    // Initialize with starters section
+    // Initialize with Lakshmi Special section
     document.addEventListener('DOMContentLoaded', () => {
-      // Hide welcome message and show starters
       welcomeSection.classList.remove('active');
       document.getElementById('lakshmi-special').classList.add('active');
     });
 
-    // Add smooth scrolling for better mobile experience
-    document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          document.querySelector('.menu-contents').scrollIntoView({
-            behavior: 'smooth'
+    // Add stagger animation to menu items when section becomes visible
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const menuItems = entry.target.querySelectorAll('.menu-item-card');
+          menuItems.forEach((item, index) => {
+            setTimeout(() => {
+              item.style.opacity = '0';
+              item.style.transform = 'translateX(-20px)';
+              item.style.transition = 'all 0.4s ease';
+              
+              requestAnimationFrame(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateX(0)';
+              });
+            }, index * 50);
           });
         }
       });
+    }, observerOptions);
+
+    // Observe all category groups
+    document.querySelectorAll('.category-group').forEach(group => {
+      observer.observe(group);
     });
 
-    // Add hover effects for menu items
-    document.querySelectorAll('.menu-item-row').forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        item.style.transform = 'translateX(10px)';
+    // Add floating animation to category icons
+    const categoryIcons = document.querySelectorAll('.category-icon');
+    categoryIcons.forEach(icon => {
+      icon.style.display = 'inline-block';
+      icon.style.transition = 'transform 0.3s ease';
+    });
+
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('.category-icon');
+        icon.style.transform = 'scale(1.2) rotate(10deg)';
       });
       
-      item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translateX(0)';
+      btn.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('.category-icon');
+        icon.style.transform = 'scale(1) rotate(0deg)';
       });
     });
   </script>
