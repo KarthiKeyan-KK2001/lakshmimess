@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-  <title>Lakshmi Mess - Sweet Menu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Lakshmi Mess - Sweets & Snacks Menu</title>
   <style>
     :root {
       --orange: #F36C21;
@@ -22,27 +21,6 @@
       --black: #000000;
       --white: #FFFFFF;
       --green: #4A7C59;
-
-
-
-
-         --orange: #F36C21;
-      --yellow-orange: #F7941D;
-      --cream: #FFF7F0;
-      --brown-dark: #5C3A21;
-      --brown-med: #7C4D28;
-      --brown-light: #BFA58B;
-      --red: #E30613;
-      --red-dark: #C1272D;
-      --golden: #F6C453;
-      --grey-dark: #4D4D4D;
-      --grey-light: #999999;
-      --black: #000000;
-      --white: #FFFFFF;
-
-
-
-      /* Social Media Colors */
       --facebook: #1877F2;
       --instagram: #E4405F;
       --whatsapp: #25D366;
@@ -55,18 +33,21 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: var(--cream);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
       color: var(--brown-dark);
+      overflow-x: hidden;
     }
 
-    /* Desktop Navbar */
+    /* Navbar - UNCHANGED */
     .navbar {
       background: var(--white);
       border-bottom: 3px solid var(--orange);
       padding: 0 20px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: relative;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .nav-container {
@@ -100,9 +81,7 @@
       gap: 30px;
     }
 
-    /* Desktop: Hide mobile row containers */
-    .first-row,
-    .second-row {
+    .first-row, .second-row {
       display: contents;
     }
 
@@ -115,18 +94,11 @@
       transition: all 0.3s ease;
     }
 
-    .nav-link:hover {
+    .nav-link:hover, .nav-link.active {
       background: var(--orange);
       color: var(--white);
     }
 
-    /* Active/Highlighted menu item */
-    .nav-link.active {
-      background: var(--orange);
-      color: var(--white);
-    }
-
-    /* Hamburger Menu Styles */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -144,7 +116,6 @@
       border-radius: 2px;
     }
 
-    /* Hamburger animation when active */
     .hamburger.active span:nth-child(1) {
       transform: rotate(-45deg) translate(-5px, 6px);
     }
@@ -157,7 +128,6 @@
       transform: rotate(45deg) translate(-5px, -6px);
     }
 
-    /* Mobile Menu Overlay */
     .mobile-menu-overlay {
       position: fixed;
       top: 0;
@@ -176,7 +146,6 @@
       visibility: visible;
     }
 
-    /* Mobile Menu */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -208,20 +177,8 @@
       border: 1px solid var(--brown-light);
       border-radius: 8px;
       background: var(--cream);
-      color: var(--brown-dark);
-      font-weight: 500;
-      transition: all 0.3s ease;
     }
 
-    .mobile-menu .nav-link:hover,
-    .mobile-menu .nav-link.active {
-      background: var(--orange);
-      color: var(--white);
-      border-color: var(--orange);
-      transform: translateX(-5px);
-    }
-
-    /* Close button in mobile menu */
     .close-btn {
       position: absolute;
       top: 20px;
@@ -232,154 +189,284 @@
       color: var(--white);
       cursor: pointer;
       padding: 8px;
-      line-height: 1;
       border-radius: 50%;
       width: 35px;
       height: 35px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       z-index: 1002;
     }
 
-    .close-btn:hover {
-      background: var(--red);
-      transform: scale(1.1);
-    }
-
-    /* Mobile Styles */
     @media screen and (max-width: 768px) {
-      .nav-container {
-        height: 70px;
-        flex-direction: row;
-        padding: 0;
-      }
-
-      .logo {
-        text-align: left;
-        width: auto;
-      }
-
       .nav-menu {
         display: none;
       }
-
       .hamburger {
         display: flex;
       }
+    }
 
-      /* Hide desktop row containers on mobile */
-      .first-row,
-      .second-row {
-        display: none;
+    /* Hero Section with Different Animation */
+    .hero-section {
+      position: relative;
+      height: 450px;
+      background: linear-gradient(135deg, var(--golden) 0%, var(--yellow-orange) 50%, var(--orange) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 50px;
+    }
+
+    /* Floating Sweets Animation */
+    .hero-section::before {
+      /* content: '🍬'; */
+      position: absolute;
+      font-size: 3em;
+      animation: floatSweet1 8s infinite ease-in-out;
+      opacity: 0.3;
+      left: 10%;
+      top: 20%;
+    }
+
+    .hero-section::after {
+      content: '🍭';
+      position: absolute;
+      font-size: 2.5em;
+      animation: floatSweet2 10s infinite ease-in-out;
+      opacity: 0.3;
+      right: 15%;
+      bottom: 25%;
+    }
+
+    @keyframes floatSweet1 {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotate(180deg);
       }
     }
 
-    /* Page Title */
-    .page-title {
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(135deg, var(--orange), var(--yellow-orange));
-      color: var(--white);
-      margin-bottom: 30px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    @keyframes floatSweet2 {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translateY(-40px) rotate(-180deg) scale(1.2);
+      }
     }
 
-    .page-title h1 {
-      font-size: 2.5em;
-      font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    }
-
-    .page-title p {
-      font-size: 1.2em;
-      margin-top: 10px;
-      opacity: 0.9;
-    }
-
-    /* Menu Container */
-    .menu-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      gap: 30px;
-      min-height: 600px;
-    }
-
-    /* Left Sidebar - Categories (1/4) */
-    .menu-categories {
-      flex: 0 0 25%;
-      background: var(--white);
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      height: fit-content;
-      position: sticky;
-      top: 20px;
-    }
-
-    .menu-categories h2 {
-      color: var(--orange);
-      font-size: 1.5em;
-      margin-bottom: 20px;
-      text-align: center;
-      border-bottom: 2px solid var(--orange);
-      padding-bottom: 10px;
-    }
-
-    .category-list {
-      list-style: none;
-    }
-
-    .category-item {
-      margin-bottom: 10px;
-    }
-
-    .category-btn {
+    /* Sparkle Effect */
+    .sparkle {
+      position: absolute;
       width: 100%;
-      padding: 15px;
-      background: var(--cream);
-      border: 2px solid var(--brown-light);
-      border-radius: 10px;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .sparkle::before,
+    .sparkle::after {
+      content: '✨';
+      position: absolute;
+      font-size: 2em;
+      animation: sparkleAnim 3s infinite;
+    }
+
+    .sparkle::before {
+      left: 20%;
+      top: 30%;
+      animation-delay: 0s;
+    }
+
+    .sparkle::after {
+      right: 25%;
+      bottom: 35%;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes sparkleAnim {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      animation: zoomIn 1s ease-out;
+    }
+
+    .hero-icon {
+      font-size: 5em;
+      margin-bottom: 20px;
+      animation: rotateIn 1.2s ease-out;
+      display: inline-block;
+    }
+
+    @keyframes rotateIn {
+      from {
+        opacity: 0;
+        transform: rotate(-200deg) scale(0);
+      }
+      to {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .hero-content h1 {
+      font-size: 3.5em;
+      color: var(--white);
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+      margin-bottom: 15px;
+      animation: slideDown 0.8s ease-out;
+    }
+
+    .hero-content p {
+      font-size: 1.5em;
+      color: var(--cream);
+      animation: slideUp 0.8s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Menu Container - Full Width Design */
+    .menu-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 30px 50px;
+    }
+
+    /* Category Tabs - Horizontal Design */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+    }
+
+    .category-tab {
+      padding: 20px 40px;
+      background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+      border: 3px solid var(--brown-light);
+      border-radius: 50px;
       color: var(--brown-dark);
-      font-size: 1em;
-      font-weight: 500;
+      font-size: 1.3em;
+      font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
-      text-align: left;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .category-tab::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--yellow-orange) 100%);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+      z-index: 0;
+    }
+
+    .category-tab:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .category-tab:hover {
+      transform: translateY(-8px) scale(1.05);
+      border-color: var(--orange);
+      color: var(--white);
+      box-shadow: 0 15px 40px rgba(243, 108, 33, 0.4);
+    }
+
+    .category-tab.active {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--yellow-orange) 100%);
+      color: var(--white);
+      border-color: var(--orange);
+      transform: scale(1.1);
+      box-shadow: 0 10px 35px rgba(243, 108, 33, 0.5);
+    }
+
+    .category-tab.active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .category-tab span {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .category-btn:hover {
-      background: var(--orange);
-      color: var(--white);
-      border-color: var(--orange);
-      transform: translateX(5px);
-      box-shadow: 0 4px 15px rgba(243, 108, 33, 0.3);
-    }
-
-    .category-btn.active {
-      background: var(--orange);
-      color: var(--white);
-      border-color: var(--orange);
-      box-shadow: 0 4px 15px rgba(243, 108, 33, 0.3);
+      gap: 12px;
     }
 
     .category-icon {
-      font-size: 1.2em;
+      font-size: 1.4em;
+      animation: bounce 2s infinite;
     }
 
-    /* Right Content - Menu Items (3/4) */
-    .menu-contents {
-      flex: 1;
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Menu Content */
+    .menu-content {
       background: var(--white);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-radius: 30px;
+      padding: 50px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+      border: 3px solid var(--cream);
     }
 
     .menu-section {
@@ -388,303 +475,229 @@
 
     .menu-section.active {
       display: block;
-      animation: fadeIn 0.5s ease-in-out;
+      animation: fadeInRotate 0.6s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInRotate {
+      from {
+        opacity: 0;
+        transform: perspective(1000px) rotateX(-20deg);
+      }
+      to {
+        opacity: 1;
+        transform: perspective(1000px) rotateX(0deg);
+      }
+    }
+
+    /* Masonry Grid Layout */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    /* Category Box */
+    .category-box {
+      background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+      border-radius: 25px;
+      padding: 30px;
+      border: 3px solid var(--brown-light);
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+      animation: slideInUp 0.6s ease-out backwards;
+    }
+
+    .category-box:nth-child(1) { animation-delay: 0.1s; }
+    .category-box:nth-child(2) { animation-delay: 0.2s; }
+    .category-box:nth-child(3) { animation-delay: 0.3s; }
+    .category-box:nth-child(4) { animation-delay: 0.4s; }
+    .category-box:nth-child(5) { animation-delay: 0.5s; }
+    .category-box:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .category-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(243, 108, 33, 0.1) 0%, transparent 70%);
+      transform: rotate(45deg);
+      transition: transform 0.8s ease;
+    }
+
+    .category-box:hover::before {
+      transform: rotate(90deg);
+    }
+
+    .category-box:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(243, 108, 33, 0.25);
+      border-color: var(--orange);
+    }
+
+    .category-box-title {
+      font-size: 1.8em;
+      color: var(--brown-dark);
+      margin-bottom: 25px;
+      padding: 15px 25px;
+      background: linear-gradient(135deg, var(--golden) 0%, var(--yellow-orange) 100%);
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(246, 196, 83, 0.4);
+      position: relative;
+      z-index: 1;
+      animation: wiggle 3s infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(-2deg);
+      }
+      75% {
+        transform: rotate(2deg);
+      }
+    }
+
+    /* Item List */
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .item-card {
+      background: var(--white);
+      padding: 18px 22px;
+      border-radius: 15px;
+      border-left: 5px solid var(--orange);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .item-card::after {
+      /* content: '🍬'; */
+      position: absolute;
+      right: -30px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2em;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .item-card:hover {
+      transform: translateX(15px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(243, 108, 33, 0.2);
+      background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+      border-left-width: 8px;
+    }
+
+    .item-card:hover::after {
+      right: 15px;
+      opacity: 1;
+    }
+
+    .item-name {
+      font-size: 1.2em;
+      font-weight: 600;
+      color: var(--brown-dark);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .item-name::before {
+      content: '✦';
+      color: var(--orange);
+      font-size: 1.2em;
+      animation: spin 3s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     /* Welcome Message */
     .welcome-message {
       text-align: center;
-      padding: 60px 20px;
-      color: var(--brown-med);
+      padding: 80px 40px;
+      animation: fadeIn 1s ease-out;
+    }
+
+    .welcome-icon {
+      font-size: 6em;
+      margin-bottom: 30px;
+      animation: swing 2s ease-in-out infinite;
+    }
+
+    @keyframes swing {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(10deg);
+      }
+      75% {
+        transform: rotate(-10deg);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     .welcome-message h3 {
-      font-size: 2em;
-      margin-bottom: 20px;
+      font-size: 2.8em;
       color: var(--orange);
+      margin-bottom: 25px;
+      animation: slideDown 0.8s ease-out;
     }
 
     .welcome-message p {
-      font-size: 1.2em;
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Structured Menu Layout */
-    .structured-menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 3px solid var(--orange);
-      background: var(--white);
-    }
-
-    /* Column Headers */
-    .column-header {
-      color: var(--white);
-      padding: 20px;
-      text-align: center;
-      font-size: 1.8em;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    }
-
-    .column-header.green {
-      background: var(--green);
-    }
-
-    .column-header.orange {
-      background: var(--orange);
-    }
-
-    /* Menu Column Content */
-    .menu-column-content {
-      padding: 25px;
-      min-height: 400px;
-    }
-
-    /* Menu Items List Style */
-    .menu-items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .menu-item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 8px 0;
-      border-bottom: 1px dotted var(--brown-med);
-      transition: all 0.3s ease;
-    }
-
-    .menu-item-row:hover {
-      background: var(--cream);
-      padding: 8px 10px;
-      border-radius: 8px;
-      border-bottom: 1px dotted transparent;
-      transform: translateX(5px);
-    }
-
-    .menu-item-row:last-child {
-      border-bottom: none;
-    }
-
-    .item-details {
-      flex: 1;
-    }
-
-    .item-name {
-      font-weight: bold;
-      font-size: 1.1em;
-      color: var(--brown-dark);
-      margin-bottom: 2px;
-    }
-
-    .item-description {
-      font-size: 0.85em;
+      font-size: 1.4em;
       color: var(--brown-med);
-      font-style: italic;
-      line-height: 1.3;
+      line-height: 1.8;
+      max-width: 750px;
+      margin: 0 auto;
+      animation: slideUp 0.8s ease-out;
     }
 
-    .item-price {
-      font-weight: bold;
-      font-size: 1.1em;
-      color: var(--orange);
-      margin-left: 15px;
-      white-space: nowrap;
-    }
-
-    /* Special Items */
-    .special-item-row {
-      background: linear-gradient(135deg, var(--golden), var(--yellow-orange));
-      margin: 10px -25px;
-      padding: 15px 35px;
-      position: relative;
-      border-radius: 8px;
-      border: none !important;
-    }
-
-    .special-item-row::before {
-      content: '★';
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--red);
-      font-size: 1.5em;
-    }
-
-    .special-item-row .item-name {
-      color: var(--brown-dark);
-    }
-
-    .special-item-row .item-price {
-      color: var(--red);
-    }
-
-    .special-item-row:hover {
-      background: linear-gradient(135deg, var(--golden), var(--orange));
-      transform: translateX(0);
-      padding: 15px 35px;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--brown-dark);
-      color: var(--cream);
-      margin-top: 40px;
-    }
-
-    .footer h3 {
-      color: var(--orange);
-      margin-bottom: 10px;
-    }
-
-    /* Mobile Styles */
-    @media screen and (max-width: 768px) {
-      .menu-container {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .menu-categories {
-        flex: none;
-        position: static;
-      }
-
-      .structured-menu {
-        grid-template-columns: 1fr;
-      }
-
-      .page-title h1 {
-        font-size: 2em;
-      }
-
-      .page-title p {
-        font-size: 1em;
-      }
-
-      .column-header {
-        font-size: 1.4em;
-      }
-
-      .menu-column-content {
-        padding: 20px;
-      }
-
-      .special-item-row {
-        margin: 10px -20px;
-        padding: 15px 30px;
-      }
-
-      .special-item-row:hover {
-        padding: 15px 30px;
-      }
-    }
-
-
-    .column-header{
-      text-align: center;
-      justify-content: center;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    .structured-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.column-header {
-  text-align: center;
-  font-size: 1.8em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.menu-column-content {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.menu-items-list {
-  text-align: left;
-  max-width: 500px; /* optional, content narrow ah fix panna */
-  width: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* Footer Styles */
+    /* Footer - UNCHANGED */
     .footer {
       background: var(--brown-dark);
       color: var(--white);
       padding: 40px 20px 20px;
-      margin-top: auto;
+      margin-top: 80px;
     }
 
     .footer-container {
@@ -729,16 +742,15 @@
       color: var(--brown-light);
     }
 
-    /* Quick Links */
-    .quick-links {
+    .quick-links, .menu-links {
       list-style: none;
     }
 
-    .quick-links li {
+    .quick-links li, .menu-links li {
       margin-bottom: 8px;
     }
 
-    .quick-links a {
+    .quick-links a, .menu-links a {
       color: var(--brown-light);
       text-decoration: none;
       transition: all 0.3s ease;
@@ -746,34 +758,11 @@
       display: inline-block;
     }
 
-    .quick-links a:hover {
+    .quick-links a:hover, .menu-links a:hover {
       color: var(--orange);
       padding-left: 10px;
     }
 
-    /* Menu Links */
-    .menu-links {
-      list-style: none;
-    }
-
-    .menu-links li {
-      margin-bottom: 8px;
-    }
-
-    .menu-links a {
-      color: var(--brown-light);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      padding: 5px 0;
-      display: inline-block;
-    }
-
-    .menu-links a:hover {
-      color: var(--yellow-orange);
-      padding-left: 10px;
-    }
-
-    /* Contact Info */
     .contact-info {
       color: var(--brown-light);
     }
@@ -798,7 +787,6 @@
       min-width: 20px;
     }
 
-    /* Social Media Icons */
     .social-media {
       display: flex;
       gap: 15px;
@@ -825,23 +813,18 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    /* Social Media Hover Colors */
     .social-icon.facebook:hover {
       background: var(--facebook);
-      border-color: var(--facebook);
     }
 
     .social-icon.instagram:hover {
       background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-      border-color: var(--instagram);
     }
 
     .social-icon.whatsapp:hover {
       background: var(--whatsapp);
-      border-color: var(--whatsapp);
     }
 
-    /* Footer Bottom */
     .footer-bottom {
       margin-top: 30px;
       padding-top: 20px;
@@ -850,78 +833,63 @@
       color: var(--brown-light);
     }
 
-    .footer-bottom p {
-      font-size: 14px;
-    }
-
     /* Mobile Responsive */
     @media screen and (max-width: 768px) {
-     .footer-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Contact info first */
-  .footer-section:nth-child(4) {
-    order: -1;
-  }
-
-   .footer-section:nth-child(1) {
-    /* order: -1; */
-    display: none;
-  }
-
-  .footer-section:nth-child(2) {
-    /* order: -1; */
-    display: none;
-  }
-
-  .footer-section:nth-child(3) {
-    /* order: -1; */
-    display: none;
-  }
-
-  /* Contact info first */
-  .footer-section:nth-child(4) {
-    order: -1;
-  }
-
-      .footer-logo {
-        justify-content: flex-start;
+      .hero-section {
+        height: 300px;
       }
 
-      .contact-item {
-        justify-content: flex-start;
+      .hero-content h1 {
+        font-size: 2.2em;
       }
 
-      .social-media {
-        justify-content: flex-start;
+      .hero-content p {
+        font-size: 1.1em;
       }
 
-      .social-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 22px;
+      .category-tabs {
+        flex-direction: column;
+        align-items: stretch;
       }
 
-      .footer-section h3 {
-        text-align: left;
+      .category-tab {
+        padding: 15px 25px;
+        font-size: 1.1em;
+      }
+
+      .menu-content {
+        padding: 25px;
+      }
+
+      .items-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-section:nth-child(1),
+      .footer-section:nth-child(2),
+      .footer-section:nth-child(3) {
+        display: none;
+      }
+
+      .footer-section:nth-child(4) {
+        order: -1;
       }
     }
-
   </style>
 </head>
 <body>
-
-     <!-- Navigation Bar -->
+  <!-- Navigation - UNCHANGED -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="./index.html" class="logo">
-        <img src="./image/logo.png" alt="Lakmi Mess Logo">
+        <img src="./image/logo.png" alt="Lakshmi Mess Logo">
         <span style="font-family: 'Times New Roman', Times, serif;">Lakshmi Mess</span>
       </a>
       
-      <!-- Desktop Menu -->
       <ul class="nav-menu">
         <div class="first-row">
           <li><a href="./index.html" class="nav-link">Home</a></li>
@@ -934,7 +902,6 @@
         </div>
       </ul>
 
-      <!-- Mobile Hamburger -->
       <div class="hamburger" id="hamburger">
         <span></span>
         <span></span>
@@ -943,10 +910,7 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-
-  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="close-btn" id="closeBtn">✕</button>
     <ul>
@@ -959,598 +923,381 @@
     </ul>
   </div>
 
-
-
-  <!-- Page Title -->
-  <div class="page-title">
-    <h1>Our Delicious Sweets & Snacks</h1>
-    <p>Authentic South Indian Flavors & More</p>
-
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="sparkle"></div>
+    <div class="hero-content">
+      <div class="hero-icon">🍰</div>
+      <h1>Delicious Sweets & Snacks</h1>
+      <p>Authentic South Indian Flavors & More</p>
+    </div>
   </div>
 
   <!-- Menu Container -->
   <div class="menu-container">
-    <!-- Left Sidebar - Categories (1/4) -->
-    <div class="menu-categories">
-      <h2>Menu Categories</h2>
-      <ul class="category-list">
-
-        <li class="category-item">
-          <button class="category-btn active" data-category="starters">
-            <span class="category-icon">🥗</span>
-            <span>Snacks</span>
-          </button>
-        </li>
-        <li class="category-item">
-          <button class="category-btn" data-category="breads">
-            <span class="category-icon">🫓</span>
-            <span>Sweets</span>
-          </button>
-        </li>
-               
-      </ul>
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+      <button class="category-tab active" data-category="snacks">
+        <span>
+          <!-- <span class="category-icon">🥨</span> -->
+          Snacks
+        </span>
+      </button>
+      <button class="category-tab" data-category="sweets">
+        <span>
+          <!-- <span class="category-icon">🍬</span> -->
+          Sweets
+        </span>
+      </button>
     </div>
 
-    <!-- Right Content - Menu Items (3/4) -->
-    <div class="menu-contents">
-      <!-- Welcome Message -->
+    <!-- Menu Content -->
+    <div class="menu-content">
+      <!-- Welcome Section -->
       <div class="menu-section active" id="welcome">
         <div class="welcome-message">
+          <div class="welcome-icon">🎂</div>
           <h3>Welcome to Lakshmi Mess</h3>
-          <p>Discover our authentic South Indian cuisine and specialties. Click on any category from the left menu to explore our delicious offerings. Each dish is prepared with traditional recipes and the finest ingredients to give you an unforgettable dining experience.</p>
+          <p>Discover our authentic South Indian sweets and snacks. Select a category to explore our delicious offerings prepared with traditional recipes and the finest ingredients.</p>
         </div>
       </div>
 
-      <!-- Starters Section -->
-      <div class="menu-section" id="starters">
-        <div class="structured-menu">
-          <div class="column-header green">Snacks</div>
-          <!-- <div class="column-header orange">NON-VEG STARTERS</div> -->
-          <div class="menu-column-content">
-            <div class="menu-items-list">
-              <!-- Thattu Vadai Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">MIXER</div>
-                </div>
+      <!-- Snacks Section -->
+      <div class="menu-section" id="snacks">
+        <div class="items-grid">
+          <div class="category-box">
+            <div class="category-box-title">MIXER</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Normal mixer</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Normal mixer</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Special mixer</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Special mixer</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Potato mixer</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Potato mixer</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Sweet mixer</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Sweet mixer</div>
-                </div>
-              </div>
-             
-              <!-- Thattu Vadai -->
-
-               <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">BOONDI</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kaara boondi</div>
-                </div>
-              </div>
-
-             
-
-              <!-- Chinese Category -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">MURUKKU</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kai murukku</div>
-    
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Ghee murukku</div>
-
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Andhra murukku</div>
-    
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kaara murukku</div>
-    
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Baby murukku</div>
-
-                </div>
-              </div>
-                <div class="menu-item-row">
-                    <div class="item-details">
-                    <div class="item-name">Thengaaipal murukku</div>
-        
-                    </div>
-                </div>
             </div>
           </div>
-          <div class="menu-column-content">
-            <div class="menu-items-list">
-              <!-- Non-Veg 65 Varieties -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">PARUPPU VAGAI</div>
-                </div>
+
+          <div class="category-box">
+            <div class="category-box-title">BOONDI</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Kaara boondi</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Moongdhal</div>
-                  
-                </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">MURUKKU</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Kai murukku</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pachai payaru</div>
-
-                </div>
+              <div class="item-card">
+                <div class="item-name">Ghee murukku</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mochai payaru</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Andhra murukku</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pacha kadalai paruppu</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Kaara murukku</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pattani paruppu</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Baby murukku</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kaara sundal</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Thengaaipal murukku</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Masala kadalai</div>
-                </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">PARUPPU VAGAI</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Moongdhal</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kaara kadalai</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Pachai payaru</div>
               </div>
-
-
-             <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Fried cashew</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Mochai payaru</div>
               </div>
-
-
-             <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pasi paruppu</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Pacha kadalai paruppu</div>
               </div>
-
-              
-
-              <!-- Non-Veg Chinese -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">THATTAI</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Pattani paruppu</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Paruppu thattai</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Kaara sundal</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Milagu thattai</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Masala kadalai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kaarakudi thattai</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Kaara kadalai</div>
               </div>
-
-
-
-
- <!-- Non-Veg Chinese -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">SEV</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Fried cashew</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Milagu sev</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Pasi paruppu</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Sattur sev</div>
-                </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">THATTAI</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Paruppu thattai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Butter sev</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Milagu thattai</div>
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <!-- Non-Veg Chinese -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">URUNDAI</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Kaarakudi thattai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Ellu urundai</div>
-                </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">SEV</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Milagu sev</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kadalai urundai</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Sattur sev</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pasi paruppu urundai</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Butter sev</div>
               </div>
+            </div>
+          </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-              <!-- Other Non-Veg Starters -->
-              <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px -25px; padding: 10px 35px; border-radius: 8px; border: none;">
-                <div class="item-details">
-                  <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">CHIPS</div>
-                </div>
+          <div class="category-box">
+            <div class="category-box-title">URUNDAI</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Ellu urundai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Pasta</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Kadalai urundai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Wheel chips</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Pasi paruppu urundai</div>
               </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Mini ring</div>
-                </div>
-              </div>
-              <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Cone chips</div>
-                </div>
-              </div>
+            </div>
+          </div>
 
-            <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Patato chips</div>
-                </div>
+          <div class="category-box">
+            <div class="category-box-title">CHIPS</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Pasta</div>
               </div>
-
-
-            <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Kuchi chips</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Wheel chips</div>
               </div>
-
-
-            <div class="menu-item-row">
-                <div class="item-details">
-                  <div class="item-name">Nenthiram chips</div>
-                </div>
+              <div class="item-card">
+                <div class="item-name">Mini ring</div>
               </div>
-              
+              <div class="item-card">
+                <div class="item-name">Cone chips</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Patato chips</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Kuchi chips</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Nenthiram chips</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-
-
-      <!-- Breads Section -->
-      <div class="menu-section" id="breads">
-        <div class="structured-menu">
-
-    <!-- Title -->
-    <div class="column-header green">Sweets</div>
-
-    <!-- Items -->
-    <div class="menu-column-content">
-      <div class="menu-items-list">
-
-        <div class="menu-item-row" style="background: linear-gradient(135deg, #F6C453, #F7941D); margin: 15px 0; padding: 10px 35px; border-radius: 8px;">
-          <div class="item-details">
-            <div class="item-name" style="color: #5C3A21; font-size: 1.3em;">Sweet List</div>
-          </div>
-        </div>
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Jangri</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Laddu</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Mothi Laddu</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Thirupathi laddu</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Badusha</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Ghee Badusha</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Chandrakala</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Suryakala</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Normal Mysore pak</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Ghee Mysore pak</div>
-          </div>
-        </div>
-
-
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Mundhiri Mysore pak</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Gulab jamun</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Mini Gulab jamun</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Kala  jamun</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Paneer  jamun</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Bombay halwa</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Pineapple halwa </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">mathulai halwa</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Kaju katli </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">pista biscuit</div>
-          </div>
-        </div>
-
-
-
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">kaju straybeery biscuit</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Pista roll</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Pista laddu</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Anjeer roll</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Kaju Nuts roll</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Rasmalai </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Malai sandwich </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Jam jam</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Globe jamun sandwich </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Milk beda</div>
-          </div>
-        </div>
-
-
-
-
-
-
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Milk cake </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Vennila barfi</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Horlicks Barfi </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Boost barfi</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">malai beda</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Mango beda </div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">pista biscuit</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Ghee boonthi</div>
-          </div>
-        </div>
-        <div class="menu-item-row">
-          <div class="item-details">
-            <div class="item-name">Palkova</div>
-          </div>
-        </div>
-                     
-              
+      <!-- Sweets Section -->
+      <div class="menu-section" id="sweets">
+        <div class="items-grid">
+          <div class="category-box">
+            <div class="category-box-title">Traditional Sweets</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Jangri</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Laddu</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Mothi Laddu</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Thirupathi laddu</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Badusha</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Ghee Badusha</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Chandrakala</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Suryakala</div>
+              </div>
             </div>
           </div>
-          
+
+          <div class="category-box">
+            <div class="category-box-title">Mysore Pak Varieties</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Normal Mysore pak</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Ghee Mysore pak</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Mundhiri Mysore pak</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">Jamun Varieties</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Gulab jamun</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Mini Gulab jamun</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Kala jamun</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Paneer jamun</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">Halwa Collection</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Bombay halwa</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Pineapple halwa</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Mathulai halwa</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">Premium Sweets</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Kaju katli</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Pista biscuit</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Kaju strawberry biscuit</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Pista roll</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Pista laddu</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Anjeer roll</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Kaju Nuts roll</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">Milk Based Sweets</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Rasmalai</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Malai sandwich</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Jam jam</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Globe jamun sandwich</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Milk beda</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Milk cake</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Malai beda</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Mango beda</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">Barfi Collection</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Vennila barfi</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Horlicks Barfi</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Boost barfi</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-box">
+            <div class="category-box-title">Special Items</div>
+            <div class="item-list">
+              <div class="item-card">
+                <div class="item-name">Ghee boonthi</div>
+              </div>
+              <div class="item-card">
+                <div class="item-name">Palkova</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-
-      
     </div>
   </div>
 
-  <!-- Footer -->
-<footer class="footer">
+  <!-- Footer - UNCHANGED -->
+  <footer class="footer">
     <div class="footer-container">
-      <!-- Company Info Section -->
       <div class="footer-section">
         <div class="footer-logo">
           <img src="./image/logo.png" alt="Lakshmi Mess Logo">
@@ -1561,7 +1308,6 @@
         </div>
       </div>
 
-      <!-- Quick Links Section -->
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul class="quick-links">
@@ -1570,11 +1316,9 @@
           <li><a href="./food_menu.html">Food menu</a></li>
           <li><a href="./sweet&snacks.html">Sweet menu</a></li>
           <li><a href="#gallery">Contact</a></li>
-          
         </ul>
       </div>
 
-      <!-- Menu Section -->
       <div class="footer-section">
         <h3>Our Menu</h3>
         <ul class="menu-links">
@@ -1587,87 +1331,78 @@
         </ul>
       </div>
 
-      <!-- Contact Section -->
       <div class="footer-section">
-  <h3>Contact Info</h3>
-  <div class="contact-info">
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-phone"></i></div>
-      <span>
-        <a href="tel:+917200698989" style="color: inherit; text-decoration: none;">72006 98989</a> , 
-        <a href="tel:+917200798989" style="color: inherit; text-decoration: none;">72007 98989</a> , 
-        <a href="tel:+917373069697" style="color: inherit; text-decoration: none;">73730 69697</a>
-      </span>
-    </div><br>
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-      <span>
-        <a href="mailto:jkanthen@gmail.com" style="color: inherit; text-decoration: none;">jkanthen@gmail.com</a>, 
-        <a href="mailto:lakshmimessthuraiyur@gmail.com" style="color: inherit; text-decoration: none;">lakshmimessthuraiyur@gmail.com</a>
-      </span>
-    </div><br>
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-      <span>
-        25, East Car Street (Kizhakku Radha Veedhi),<br>
-        Athur Road, Near Sivan Temple,<br>
-        Thuraiyur, Tamil Nadu 621010.
-      </span>
-    </div><br>
-    <div class="contact-item">
-      <div class="contact-icon"><i class="fas fa-clock"></i></div>
-      <span>Open: 6:00 AM - 10:00 PM</span>
-    </div>
-  </div>
+        <h3>Contact Info</h3>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <span>
+              <a href="tel:+917200698989" style="color: inherit; text-decoration: none;">72006 98989</a>, 
+              <a href="tel:+917200798989" style="color: inherit; text-decoration: none;">72007 98989</a>, 
+              <a href="tel:+917373069697" style="color: inherit; text-decoration: none;">73730 69697</a>
+            </span>
+          </div><br>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <span>
+              <a href="mailto:jkanthen@gmail.com" style="color: inherit; text-decoration: none;">jkanthen@gmail.com</a>, 
+              <a href="mailto:lakshmimessthuraiyur@gmail.com" style="color: inherit; text-decoration: none;">lakshmimessthuraiyur@gmail.com</a>
+            </span>
+          </div><br>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <span>
+              25, East Car Street (Kizhakku Radha Veedhi),<br>
+              Athur Road, Near Sivan Temple,<br>
+              Thuraiyur, Tamil Nadu 621010.
+            </span>
+          </div><br>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+            <span>Open: 6:00 AM - 10:00 PM</span>
+          </div>
+        </div>
 
-  <!-- Social Media Icons -->
-  <div class="social-media">
-    <a href="https://facebook.com/lakshmimess" class="social-icon facebook" title="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://instagram.com/lakshmimess" class="social-icon instagram" title="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a href="https://wa.me/919876543210" class="social-icon whatsapp" title="WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  </div>
-</div>
-
+        <div class="social-media">
+          <a href="https://facebook.com/lakshmimess" class="social-icon facebook" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com/lakshmimess" class="social-icon instagram" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/919876543210" class="social-icon whatsapp" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
     </div>
 
-    <!-- Footer Bottom -->
     <div class="footer-bottom">
       <p>&copy; 2025 Lakshmi Mess. All rights reserved. | Designed BY <span><a href="https://ignielsofttech.com/" style="text-decoration: none; font-size: large; color: white;">Igniel</a></span></p>
     </div>
   </footer>
 
   <script>
-
-const hamburger = document.getElementById('hamburger');
+    // Mobile Menu
+    const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     const closeBtn = document.getElementById('closeBtn');
 
-    // Open mobile menu
     function openMobileMenu() {
-      console.log('Opening menu');
       mobileMenu.classList.add('active');
       mobileMenuOverlay.classList.add('active');
       hamburger.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    // Close mobile menu
     function closeMobileMenu() {
-      console.log('Closing menu');
       mobileMenu.classList.remove('active');
       mobileMenuOverlay.classList.remove('active');
       hamburger.classList.remove('active');
       document.body.style.overflow = 'auto';
     }
 
-    // Event listeners
     hamburger.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -1685,7 +1420,6 @@ const hamburger = document.getElementById('hamburger');
       closeMobileMenu();
     });
 
-    // Close menu when clicking on a menu item
     const mobileNavLinks = mobileMenu.querySelectorAll('.nav-link');
     mobileNavLinks.forEach(link => {
       link.addEventListener('click', function() {
@@ -1693,72 +1427,112 @@ const hamburger = document.getElementById('hamburger');
       });
     });
 
-    // Handle window resize
     window.addEventListener('resize', () => {
       if (window.innerWidth > 768) {
         closeMobileMenu();
       }
     });
 
-    // Prevent menu from closing when clicking inside it
     mobileMenu.addEventListener('click', function(e) {
       e.stopPropagation();
     });
 
-
-    // Menu navigation functionality
-    const categoryBtns = document.querySelectorAll('.category-btn');
+    // Category Tab Navigation
+    const categoryTabs = document.querySelectorAll('.category-tab');
     const menuSections = document.querySelectorAll('.menu-section');
     const welcomeSection = document.getElementById('welcome');
 
-    categoryBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        categoryBtns.forEach(b => b.classList.remove('active'));
+    categoryTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        categoryTabs.forEach(t => t.classList.remove('active'));
         
-        // Add active class to clicked button
-        btn.classList.add('active');
+        // Add active class to clicked tab
+        tab.classList.add('active');
         
         // Hide all menu sections
         menuSections.forEach(section => section.classList.remove('active'));
         
         // Show the selected section
-        const categoryId = btn.getAttribute('data-category');
+        const categoryId = tab.getAttribute('data-category');
         const targetSection = document.getElementById(categoryId);
         if (targetSection) {
           targetSection.classList.add('active');
+          
+          // Smooth scroll to content
+          setTimeout(() => {
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
         }
       });
     });
 
-    // Initialize with starters section
+    // Initialize with Snacks section
     document.addEventListener('DOMContentLoaded', () => {
-      // Hide welcome message and show starters
       welcomeSection.classList.remove('active');
-      document.getElementById('starters').classList.add('active');
+      document.getElementById('snacks').classList.add('active');
     });
 
-    // Add smooth scrolling for better mobile experience
-    document.querySelectorAll('.category-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          document.querySelector('.menu-contents').scrollIntoView({
-            behavior: 'smooth'
-          });
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
         }
       });
+    }, observerOptions);
+
+    // Observe all category boxes
+    document.querySelectorAll('.category-box').forEach(box => {
+      observer.observe(box);
     });
 
-    // Add hover effects for menu items
-    document.querySelectorAll('.menu-item-row').forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        item.style.transform = 'translateX(10px)';
-      });
-      
-      item.addEventListener('mouseleave', () => {
-        item.style.transform = 'translateX(0)';
+    // Add ripple effect on item click
+    document.querySelectorAll('.item-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.style.position = 'absolute';
+        ripple.style.width = '20px';
+        ripple.style.height = '20px';
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(243, 108, 33, 0.5)';
+        ripple.style.left = e.offsetX + 'px';
+        ripple.style.top = e.offsetY + 'px';
+        ripple.style.transform = 'translate(-50%, -50%)';
+        ripple.style.animation = 'rippleEffect 0.6s ease-out';
+        
+        this.style.position = 'relative';
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
       });
     });
+
+    // Add CSS for ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes rippleEffect {
+        from {
+          width: 20px;
+          height: 20px;
+          opacity: 1;
+        }
+        to {
+          width: 200px;
+          height: 200px;
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
