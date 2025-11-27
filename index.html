@@ -393,10 +393,7 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .split-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+        
 
             .hero-image-side {
                 height: 500px;
@@ -476,7 +473,7 @@
 
         /* ========== CREATIVE FEATURES SECTION ========== */
         .features-section-unique {
-            padding: 120px 20px;
+            padding: 20px 20px;
             background: var(--white);
             position: relative;
             overflow: hidden;
@@ -1170,10 +1167,12 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
                 padding: 0 20px;
+                
             }
 
             .hero-image-side {
                 height: 500px;
+                margin-top: -45%;
             }
 
             .features-grid-unique {
@@ -2013,68 +2012,43 @@
         });
 
         // Hero Carousel
-         // Simple Carousel
         let currentSlide = 0;
-        const totalSlides = 3;
-        const track = document.getElementById('carouselTrack');
-        const dots = document.querySelectorAll('.nav-dot-simple');
+const track = document.getElementById("carouselTrack");
+const dots = document.querySelectorAll(".nav-dot-simple");
+const totalSlides = 3;
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
+function updateDots() {
+    dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+    });
+}
 
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
+function goToSlide(slide) {
+    currentSlide = slide;
+    track.style.transform = `translateX(-${slide * 100}%)`;
+    updateDots();
+}
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }
+function autoSlide() {
+    currentSlide++;
 
-        // Auto-play carousel
-        let carouselInterval = setInterval(nextSlide, 6000);
+    if (currentSlide >= totalSlides) {
+        // instant reset to slide 0
+        currentSlide = 0;
+        track.style.transition = "none";
+        track.style.transform = "translateX(0%)";
 
-        const heroSection = document.querySelector('.hero-section');
-        heroSection.addEventListener('mouseenter', () => {
-            clearInterval(carouselInterval);
-        });
+        setTimeout(() => {
+            track.style.transition = "transform 0.6s ease-in-out";
+        }, 20);
+    } else {
+        goToSlide(currentSlide);
+    }
 
-        heroSection.addEventListener('mouseleave', () => {
-            carouselInterval = setInterval(nextSlide, 6000);
-        });
+    updateDots();
+}
 
-        // Touch/Swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        heroSection.addEventListener('touchstart', (e) => {
-            touchStartX = e.touches[0].clientX;
-            clearInterval(carouselInterval);
-        });
-
-        heroSection.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            const swipeDistance = touchStartX - touchEndX;
-            
-            if (Math.abs(swipeDistance) > 50) {
-                if (swipeDistance > 0) {
-                    nextSlide();
-                } else {
-                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                    updateCarousel();
-                }
-            }
-            
-            carouselInterval = setInterval(nextSlide, 6000);
-        });
-
-        // Initialize
-        updateCarousel();
+setInterval(autoSlide, 3000); 
     </script>
 </body>
 </html>
